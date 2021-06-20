@@ -1,0 +1,7 @@
+{
+  "presets": [
+    "@babel/preset-env",	// env预设，将ES2015+的代码转换为向后兼容的js语法
+    "@babel/preset-react"	// 能够转换JSX代码
+  ],
+  "plugins": ["@babel/plugin-transform-runtime"]	// 转换 generater 语法
+}
