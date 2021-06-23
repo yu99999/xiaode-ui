@@ -1,0 +1,16 @@
+@theme-colors: {
+  primary: @primary;
+  secondary: @secondary;
+  success: @success;
+  info: @info;
+  warning: @warning;
+  danger: @danger;
+  light: @light;
+  default: @default;
+};
+
+each(@theme-colors, {
+  .xiaode-icon-@{key}{
+    color: @value
+  }
+})

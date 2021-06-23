@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes, FC, ReactNode } from "react";
+import React from "react";
 import classNames from "classnames";
 
 type Size = "large" | "middle" | "small";
@@ -8,15 +8,14 @@ interface BaseButtonProps{
   className?: string;
   disabled?: boolean;
   size?: Size,
-  children: ReactNode,
   btnType?: Type,
   href?: string,
   target?: string
 }
 
-type ButtonProps = BaseButtonProps & ButtonHTMLAttributes<HTMLElement>
+type ButtonProps = BaseButtonProps & React.ButtonHTMLAttributes<HTMLElement>
 
-const Button: FC<ButtonProps> = (props) => {
+const Button: React.FC<ButtonProps> = (props) => {
   const {className, disabled, size, children, btnType, href, target, ...resetProps} = props;
   const classes = classNames('btn', {
     [`btn-${btnType}`]: btnType,

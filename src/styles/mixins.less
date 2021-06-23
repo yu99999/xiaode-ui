@@ -1,0 +1,23 @@
+.scale-animation(@direction, @scaleStart, @scaleEnd, @origin){
+  .scale-@{direction}-enter{
+    opacity: 0;
+    transform: @scaleStart;
+  }
+  .scale-@{direction}-enter-active{
+    opacity: 1;
+    transform: @scaleEnd;
+    transition: transform 300ms, opacity 300ms;
+    transform-origin: @origin;
+  }
+  
+  .scale-@{direction}-exit{
+    opacity: 1;
+    transform: @scaleEnd;
+  }
+  .scale-@{direction}-exit-active{
+    opacity: 0;
+    transform: @scaleStart;
+    transition: transform 300ms, opacity 300ms;
+    transform-origin: @origin;
+  }
+}

@@ -28,7 +28,7 @@
 @warning: @yellow;
 @danger: @red;
 @light: @gray-100;
-@dark: @gray-800;
+@default: @gray-800;
 
 // 字体家族
 @font-family-sans-serif: -apple-system, BlinkMacSystemFont, "SegoeUI", Roboto, "HelveticaNeue", Arial, "NotoSans", sans-serif, "AppleColorEmoji", "SegoeUIEmoji", "SegoeUISymbol", "NotoColorEmoji";
@@ -49,7 +49,8 @@
 @font-weight-base: @font-weight-normal;
 
 // 字体基础
-@font-base-color: @gray-900;
+@font-base-color: @default;
+@font-disabled-color: @gray-500;
 
 // 行高
 @line-height-sm: 1.25;
@@ -67,6 +68,7 @@
 // 边框 border radius
 @border-width: 1px;
 @border-color: @gray-300;
+@border-width-lg: 2px;
 
 @border-radius-sm: .2rem;
 @border-radius: .25rem;
@@ -81,3 +83,6 @@
 // 链接
 @link-color: @primary;
 @link-hover-color: darken(@link-color, 15%);
+
+// 过渡
+@transition: all .2s;

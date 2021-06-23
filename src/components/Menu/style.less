@@ -1,0 +1,108 @@
+
+// menu-item
+@menu-item-border-width: @border-width;
+@menu-item-border-color: @border-color;
+@menu-item-padding-y: .5rem;
+@menu-item-padding-x: 1.2rem;
+@menu-item-actived-border-width: @border-width-lg;
+@menu-item-disabled-color: @font-disabled-color;
+
+// sub-menu
+@sub-menu-padding: .7rem 1rem;
+@sub-menu-item-padding-y: .5rem;
+@sub-menu-item-padding-x: 1rem;
+
+.menu{
+  display: flex;
+  list-style: none;
+
+  .menu-item{
+    margin: 0 .2rem;
+    position: relative;
+    box-sizing: border-box;
+    padding: @menu-item-padding-y @menu-item-padding-x;
+    transition: @transition;
+    cursor: pointer;
+    &.menu-item-actived, &:hover{
+      color: @primary;
+    }
+    &.menu-item-disabled{
+      color: @menu-item-disabled-color;
+      cursor: not-allowed;
+    }
+  }
+  
+  .sub-menu{
+    list-style: none;
+    .menu-item{
+      color: @font-base-color;
+      &.menu-item-actived, &:hover{
+        color: @primary;
+      }
+      &.menu-item-disabled{
+        color: @menu-item-disabled-color;
+        cursor: not-allowed;
+      }
+    }
+    // &.sub-menu-open{
+    //   display: block;
+    //   opacity: 1;
+    // }
+  }
+
+}
+
+.menu-horizontal{
+  flex-direction: row;
+  >.menu-item{
+    border-bottom: @menu-item-border-width solid @menu-item-border-color;
+    &.menu-item-actived, &:hover{
+      border-bottom: @menu-item-actived-border-width solid @primary;
+    }
+    &.menu-item-disabled{
+      border-bottom: @menu-item-border-width solid @menu-item-border-color;
+    }
+  }
+
+  .sub-menu{
+    position: absolute;
+    left: 0; top: 2.8rem;
+    box-shadow: @box-shadow;
+    padding: @sub-menu-padding;
+  }
+
+}
+
+.menu-vertical{
+  flex-direction: column;
+  >.menu-item{
+    border-right: @menu-item-border-width solid @menu-item-border-color;
+    &.menu-item-actived, &:hover{
+      border-right: @menu-item-actived-border-width solid @primary;
+    }
+    &.menu-item-disabled{
+      border-right: @menu-item-border-width solid @menu-item-border-color;
+    }
+  }
+
+  .sub-menu{
+    padding: @sub-menu-padding;
+  }
+
+}
+
+.sub-menu-wrapper{
+  .sub-menu-title{
+    display: flex;
+    align-items: center;
+    .icon-arrow{
+      display: flex;
+      transition: @transition;
+      transform-origin: center;
+      margin-left: 3px;
+    }
+  }
+  &.sub-menu-wrapper-isOpened .icon-arrow{
+    transform: rotate(180deg) !important;
+  }
+}

@@ -6,7 +6,7 @@ const {DllPlugin} = require('webpack')
 module.exports = {
   mode: 'development',
   entry: {
-    vendors: ['react', 'react-dom', 'classnames']
+    vendors: ['react', 'react-dom', 'classnames', '@icon-park/react', 'react-transition-group']
   },
   output: {
     filename: '[name].dll.js',
