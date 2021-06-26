@@ -10,7 +10,12 @@
 };
 
 each(@theme-colors, {
-  .xiaode-icon-@{key}{
-    color: @value
+  .icon{
+    svg{
+      vertical-align: text-bottom;
+    }
+  }
+  .icon-@{key}{
+    color: @value;
   }
 })

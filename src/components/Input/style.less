@@ -1,0 +1,73 @@
+@import "./mixins.less";
+@input-padding-sm: 0 .5rem;
+@input-padding-base: .3rem .75rem;
+@input-padding-lg: .3rem .9rem;
+@input-box-shadow: 0 0 2.5px @primary;
+@input-fontsize-base: .85rem;
+@input-fontsize-lg: 1rem;
+@fix-distance: .5rem;
+
+.input-wrapper{
+  display: flex;
+  .input-affix-wrapper{
+    display: flex;
+    position: relative;
+    .input{
+      border: @border-width solid @border-color;
+      line-height: @line-height-base;
+      color: @font-base-color;
+    
+      &:hover{
+        border-color: @primary;
+      }
+      &:focus{
+        border-color: @primary;
+        box-shadow: @input-box-shadow;
+      }
+      &.input-prefix{
+        padding-left: @fix-distance + 1.4rem;
+      }
+      &.input-suffix{
+        padding-right: @fix-distance + 1.4rem;
+      }
+    }
+
+    .input-icon-prefix{
+      position: absolute;
+      left: @fix-distance; 
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    .input-icon-suffix{
+      position: absolute;
+      right: @fix-distance; 
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+
+  .input-prepend, .input-append{
+    line-height: @line-height-base;
+    border: @border-width solid @border-color;
+    background-color: @gray-100;
+  }
+  .input-prepend{
+    border-right: none;
+  }
+  .input-append{
+    border-left: none;
+  }
+}
+
+
+.input-wrapper-disabled{
+  opacity: .8;
+  cursor: not-allowed;
+  .input:hover{
+    border: @border-width solid @border-color;
+  }
+}
+
+.input-size(small, @input-padding-sm, @input-fontsize-base);
+.input-size(middle, @input-padding-base, @input-fontsize-base);
+.input-size(large, @input-padding-lg, @input-fontsize-lg);

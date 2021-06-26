@@ -1,6 +1,6 @@
 import React from 'react'
 import {fireEvent, render} from '@testing-library/react'
-import Button from './button'
+import {Button} from './button'
 
 describe("测试 Button 组件", () => {
   test('测试 default button', () => {

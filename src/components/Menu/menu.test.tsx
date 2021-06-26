@@ -1,8 +1,10 @@
 import React from "react";
+import {config} from "react-transition-group"
 import {fireEvent, render, RenderResult, waitFor} from '@testing-library/react'
-import Menu, {MenuProps} from "./menu";
-import MenuItem from "./menuItem";
-import SubMenu from "./submenu";
+import {Menu, MenuItem, SubMenu} from "../index"
+import {MenuProps} from "./menu"
+
+// config.disabled = true;
 
 const genMenu = (props: MenuProps) => {
   return (
@@ -78,12 +80,12 @@ describe("测试 horizontal Menu 组件", () => {
     expect(testProps.onSelect).toBeCalledTimes(1)
   })
   test('测试 submenu 组件的显示和隐藏', async () => {
-    const el = wrapper.queryByText('drop1') as HTMLElement;
-    expect(el).not.toBeVisible()
     const dropdownEl = wrapper.getByText('dropdown')
     fireEvent.mouseEnter(dropdownEl);
+    let el;
     await waitFor(() => {
-      expect(el).toBeVisible()
+      el = wrapper.queryByText('drop1');
+      expect(wrapper.queryByText('drop1')).toBeVisible()
     })
     fireEvent.click(el)
     expect(testProps.onSelect).toBeCalledWith("hhh-drop1")

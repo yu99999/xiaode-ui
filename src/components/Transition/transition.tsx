@@ -7,7 +7,7 @@ interface TransitionProps{
   animation?: AnimationName
 }
 
-const Transition: React.FC<TransitionProps & CSSTransitionProps> = (props) => {
+export const Transition: React.FC<TransitionProps & CSSTransitionProps> = (props) => {
   const {classNames, animation, children, ...resetProps} = props;
   return (
     <CSSTransition classNames={classNames ? classNames : animation} {...resetProps}>
@@ -19,5 +19,3 @@ const Transition: React.FC<TransitionProps & CSSTransitionProps> = (props) => {
 Transition.defaultProps = {
   unmountOnExit: true
 }
-
-export default Transition;

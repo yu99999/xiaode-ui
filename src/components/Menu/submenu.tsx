@@ -3,16 +3,17 @@ import classNames from 'classnames'
 import {MenuContext} from './menu'
 import {MenuItemProps} from './menuItem'
 import {Down} from '@icon-park/react'
-import Transiton from '../Transition/transition'
+import {Transition, Icon} from '../index'
 
 interface SubMenuProps{
+  /** 唯一标志 */
   index?: string,
+  /** 子菜单项值 */
   title: string,
   className?: string
 }
 
-
-const SubMenu: React.FC<SubMenuProps> = (props) => {
+export const SubMenu: React.FC<SubMenuProps> = (props) => {
   const context = useContext(MenuContext);
   const {index, title, className, children} = props;
 
@@ -35,11 +36,11 @@ const SubMenu: React.FC<SubMenuProps> = (props) => {
     })
 
     return (
-      <Transiton in={open} timeout={300} classNames="scale-top" unmountOnExit>
+      <Transition in={open} timeout={300} classNames="scale-top" unmountOnExit>
         <ul className={wrapperClasses}>
           {list}
         </ul>
-      </Transiton>
+      </Transition>
     )
   }
 
@@ -72,7 +73,7 @@ const SubMenu: React.FC<SubMenuProps> = (props) => {
     <li key={index} className={classes} {...hoverEvent}>
       <div className="sub-menu-title" {...clickEvent}>
         {title}
-        <Down className="icon-arrow" />
+        <Icon IconOrigin={Down} className="icon-arrow" />
       </div>
       {renderChildren()}
     </li>
@@ -80,4 +81,3 @@ const SubMenu: React.FC<SubMenuProps> = (props) => {
 }
 SubMenu.displayName = 'SubMenu'
 
-export default SubMenu;

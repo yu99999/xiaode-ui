@@ -3,13 +3,15 @@ import classNames from "classnames";
 import { MenuContext } from './menu'
 
 export interface MenuItemProps{
+  /** 唯一标志 */
   index?: string;
+  /** 是否禁用 */
   disabled?: boolean;
   className?: string;
   style?: React.CSSProperties
 }
 
-const MenuItem: React.FC<MenuItemProps> = (props) => {
+export const MenuItem: React.FC<MenuItemProps> = (props) => {
   const {index, disabled, className, style, children} = props;
   const context = useContext(MenuContext)
   const classes = classNames('menu-item', className, {
@@ -31,5 +33,3 @@ const MenuItem: React.FC<MenuItemProps> = (props) => {
 }
 
 MenuItem.displayName = 'MenuItem'
-
-export default MenuItem

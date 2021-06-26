@@ -3,28 +3,34 @@ import classNames from 'classnames'
 import {MenuItemProps} from './menuItem'
 
 type MenuMode = 'vertical' | 'horizontal'
-type SelectedCallback = (selectedIndex: string) => any
 
 export interface MenuProps{
+  /** 初始选中的菜单项 index */
   defalutIndex?: string;
+  /** 自定义类名 */
   className?: string;
+  /** 菜单类型，现在支持垂直、水平两种 */
   mode?: MenuMode;
+  /** 支持自定义样式 */
   style?: React.CSSProperties;
-  onSelect?: SelectedCallback;
+  /** 被选中时调用 */
+  onSelect?: (selectedIndex: string) => any;
+  /** 初始展开的 SubMenu 菜单项 index 数组 */
   defaultOpenSubMenus?: string[]
 }
 
 interface ContextItem{
   index?: string;
-  onSelectItem?: SelectedCallback;
+  onSelectItem?: (selectedIndex: string) => any;
   mode?: MenuMode;
   defaultOpenSubMenus?: string[]
 }
 
 export const MenuContext = React.createContext<ContextItem>({})
 
-const Menu: React.FC<MenuProps> = (props) => {
-  const {defalutIndex, className, mode, style, onSelect, defaultOpenSubMenus, children} = props;
+/**  */
+export const Menu: React.FC<MenuProps> = (props) => {
+  const {defalutIndex, className, mode, style, onSelect, defaultOpenSubMenus, children, ...resetProps} = props;
   const [currentIndex, setCurrentIndex] = useState(defalutIndex)
   const classes = classNames('menu', className, {
     [`menu-${mode}`]: true
@@ -55,7 +61,7 @@ const Menu: React.FC<MenuProps> = (props) => {
   }
 
   return (
-    <ul className={classes} style={style} data-testid="test-menu">
+    <ul className={classes} style={style} data-testid="test-menu" {...resetProps}>
       <MenuContext.Provider value={currentContext}>
         {renderChildren()}
       </MenuContext.Provider>
@@ -67,5 +73,3 @@ Menu.defaultProps = {
   mode: 'horizontal',
   defaultOpenSubMenus: []
 }
-
-export default Menu

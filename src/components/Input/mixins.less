@@ -1,0 +1,11 @@
+.input-size(@size, @padding, @font-size){
+  .input-wrapper-@{size}{
+    font-size: @font-size;
+    .input{
+      padding: @padding;
+    }
+    .input-prepend, .input-append{
+      padding: @padding;
+    }
+  }
+}
