@@ -22,7 +22,10 @@ export const Pend = Template.bind({})
 Pend.args = {
   prepend: "https://",
   append: ".com",
-  defaultValue: "mysite"
+  defaultValue: "mysite",
+  style: {
+    width: 300
+  }
 }
 Pend.storyName = "前置/后置标签"
 
@@ -30,21 +33,27 @@ export const CarryIcon = Template.bind({})
 CarryIcon.args = {
   prefix: <Icon IconOrigin={User} />,
   suffix: <Icon IconOrigin={Search} />,
+  style: {
+    width: 400
+  }
 }
 CarryIcon.storyName = "带图标输入框"
 
-// export const DisabledInput = Template.bind({})
-// DisabledInput.args = {
-//   prepend: "http://",
-//   append: ".com",
-//   value: "mysite"
-// }
-// DisabledInput.storyName = "禁止输入"
-
-export const DisabledInput = () => {
-  const [val, setVal] = useState('')
-
-  return (
-    <Input onChange={(e) => setVal(e.target.value)} value={val} />
-  )
+export const DisabledInput = Template.bind({})
+DisabledInput.args = {
+  prepend: "http://",
+  append: ".com",
+  disabled: true,
+  style: {
+    width: 300
+  }
 }
+DisabledInput.storyName = "禁止输入"
+
+// export const DisabledInput = () => {
+//   const [val, setVal] = useState('')
+
+//   return (
+//     <Input onChange={(e) => setVal(e.target.value)} value={val} />
+//   )
+// }

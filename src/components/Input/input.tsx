@@ -19,9 +19,9 @@ export interface InputProps extends Omit<React.InputHTMLAttributes<HTMLElement>,
 }
 
 export const Input: React.FC<InputProps> = (props) => {
-  const {disabled, size, suffix, prefix, prepend, append, ...resetProps} = props;
+  const {disabled, size, suffix, prefix, prepend, append, onChange, style, className, ...resetProps} = props;
 
-  const classesWrapper = classNames('input-wrapper', {
+  const classesWrapper = classNames('input-wrapper', className, {
     [`input-wrapper-${size}`]: size,
     [`input-wrapper-disabled`]: disabled,
   })
@@ -30,13 +30,14 @@ export const Input: React.FC<InputProps> = (props) => {
     'input-suffix': suffix
   })
   return (
-    <div className={classesWrapper}>
+    <div className={classesWrapper} style={style}>
       {prepend ? <span className="input-prepend">{prepend}</span> : null}
       <div className="input-affix-wrapper">
         {prefix ? <span className="input-icon-prefix">{prefix}</span> : null}
         <input
           className={classesInput}
           disabled={disabled}
+          onChange={onChange}
           {...resetProps} 
         />
         {suffix ? <span className="input-icon-suffix">{suffix}</span> : null}

@@ -1,0 +1,31 @@
+// @auto-complete-dropdown-maxwidth: 25rem;
+// @auto-complete-dropdown-maxheight: 15rem;
+
+@auto-complete-item-padding: .4rem 1rem;
+
+.auto-complete{
+  position: relative;
+
+  .auto-complete-dropdown{
+    min-width: 100%;
+    z-index: 100;
+    position: absolute;
+    box-shadow: @box-shadow-outside;
+    list-style: none;
+    padding: .3rem 0;
+    top: 120%;
+    box-sizing: border-box;
+    transition: @transition;
+    border: @border-base;
+
+    .auto-complete-dropdown-item{
+      padding: @auto-complete-item-padding;
+      transition: @transition;
+      &:hover, &.auto-complete-dropdown-item-selected{
+        color: @primary;
+        background-color: @gray-200;
+        cursor: pointer;
+      }
+    }
+  }
+}

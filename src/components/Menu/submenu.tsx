@@ -36,7 +36,7 @@ export const SubMenu: React.FC<SubMenuProps> = (props) => {
     })
 
     return (
-      <Transition in={open} timeout={300} classNames="scale-top" unmountOnExit>
+      <Transition in={open} timeout={300} animation="scale-top" unmountOnExit>
         <ul className={wrapperClasses}>
           {list}
         </ul>

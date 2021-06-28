@@ -1,10 +1,8 @@
 import React from "react";
-import {config} from "react-transition-group"
 import {fireEvent, render, RenderResult, waitFor} from '@testing-library/react'
 import {Menu, MenuItem, SubMenu} from "../index"
 import {MenuProps} from "./menu"
 
-// config.disabled = true;
 
 const genMenu = (props: MenuProps) => {
   return (

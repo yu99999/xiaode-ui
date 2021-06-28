@@ -5,6 +5,7 @@ import { Transition } from "./Transition/transition";
 import { SubMenu } from "./Menu/submenu";
 import { MenuItem } from "./Menu/menuItem";
 import { Input } from "./Input/input"
+import { AutoComplete } from "./AutoComplete/autoComplete";
 
 export {
   Button,
@@ -14,4 +15,5 @@ export {
   Icon,
   Transition,
   Input,
+  AutoComplete
 }

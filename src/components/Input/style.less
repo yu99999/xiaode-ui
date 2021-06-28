@@ -12,10 +12,13 @@
   .input-affix-wrapper{
     display: flex;
     position: relative;
+    width: 100%;
     .input{
-      border: @border-width solid @border-color;
+      width: 100%;
+      border: @border-base;
       line-height: @line-height-base;
       color: @font-base-color;
+      box-sizing: border-box;
     
       &:hover{
         border-color: @primary;
@@ -48,7 +51,7 @@
 
   .input-prepend, .input-append{
     line-height: @line-height-base;
-    border: @border-width solid @border-color;
+    border: @border-base;
     background-color: @gray-100;
   }
   .input-prepend{
@@ -63,8 +66,11 @@
 .input-wrapper-disabled{
   opacity: .8;
   cursor: not-allowed;
-  .input:hover{
-    border: @border-width solid @border-color;
+  .input-affix-wrapper .input{
+    cursor: not-allowed;
+    &:hover{
+      border: @border-base;
+    }
   }
 }
 
