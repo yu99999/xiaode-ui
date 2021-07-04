@@ -1,10 +1,9 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
 import { AutoComplete } from "../components";
-import { AutoCompleteDataType } from "../components/AutoComplete/autoComplete"
 
 export default {
-  title: 'Example/AutoComplete',
+  title: 'Example/AutoComplete 自动完成',
   component: AutoComplete
 } as ComponentMeta<typeof AutoComplete>;
 
@@ -40,7 +39,7 @@ export const AsyncSearch = () => {
   }
 
   return (
-    <AutoComplete onSearch={onSearch} />
+    <AutoComplete onSearch={onSearch} placeholder="拉取数据"/>
   )
 }
 AsyncSearch.storyName = "异步请求数据"
@@ -71,6 +70,7 @@ export const Show = () => {
       onSearch={onSearch}
       onSelect={onSelect} 
       renderOptions={renderOptions}
+      placeholder="试试输入a"
     />
   )
 }

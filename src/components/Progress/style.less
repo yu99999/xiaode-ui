@@ -1,0 +1,27 @@
+@progress-bar-border-radius: .8rem;
+
+.progress-bar-wrapper{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .progress-bar-outer{
+    width: 100%;
+    padding-right: .8rem;
+    .progress-bar{
+      border-radius: @progress-bar-border-radius;
+      transition: all .3s;
+
+      each(@theme-colors, {
+        &.progress-bar-status-@{key}{
+          background-color: @value;
+        }
+      });
+    }
+  }
+
+  .progress-bar-info{
+    color: @default;
+    font-size: @font-size-sm;
+  }
+}

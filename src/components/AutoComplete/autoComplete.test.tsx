@@ -1,6 +1,10 @@
 import { fireEvent, render, RenderResult, waitFor } from "@testing-library/react";
 import React from "react";
 import {AutoComplete, AutoCompleteProps} from "./autoComplete"
+import axios from "axios";
+
+jest.mock("axios")
+const mockAxios = axios as jest.Mocked<typeof axios>
 
 
 describe("测试 AutoComplete 组件", () => {
@@ -59,7 +63,9 @@ describe("测试 AutoComplete 组件", () => {
       expect(wrapper.container.querySelectorAll(".auto-complete-dropdown-item").length).toEqual(1)
     })
     fireEvent.click(document)
-    expect(wrapper.queryByText("aaaa")).not.toBeInTheDocument()
+    await waitFor(() => {
+      expect(wrapper.queryByText("aaaa")).not.toBeInTheDocument()
+    })
   })
   
 })
@@ -83,7 +89,12 @@ test("测试 AutoComplete 组件的 renderOptions 以及异步请求", async () 
   
   fireEvent.change(el, {target: {value: "fac"}});
   await waitFor(() => {
+    // 展示 loading 动画
+    expect(wrapper.container.querySelector(".spin-spinning")).toBeInTheDocument()
+  })
+  await waitFor(() => {
     expect(wrapper.container.querySelectorAll(".auto-complete-dropdown-item").length).toEqual(6)
   })
+  expect(wrapper.container.querySelector(".spin-spinning")).not.toBeInTheDocument()
   expect(wrapper.container.querySelectorAll(".test-render-options").length).toEqual(6)
 })

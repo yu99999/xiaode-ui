@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Input, InputProps } from "../Input/input";
 import classNames from "classnames";
 import {useDebounce, useClickAway} from "../../hooks";
-import { Transition } from "..";
+import { Transition, Spin } from "..";
 
 export type AutoCompleteDataType<T = {}> = T & {value: string}
 
@@ -23,21 +23,30 @@ export const AutoComplete: React.FC<AutoCompleteProps> = (props) => {
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const [val, setVal] = useState<string>(defaultValue);
   const debouncedVal = useDebounce(val, 300);
-  const searchFlag = useRef(true);
+  const searchFlag = useRef(true);    // 防止重复搜索
   const autoCompleteRef = useRef<HTMLDivElement>(null);
+  const [loading, setLoading] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
-  useClickAway(autoCompleteRef, () => {setOptions([])})
+  useClickAway(autoCompleteRef, () => {setIsOpen(false)})
 
   useEffect(() => {
+    
     if(debouncedVal && searchFlag.current){
       const res = onSearch(debouncedVal)
       if(res instanceof Promise){
-        res.then(data => setOptions(data))
+        setLoading(true)
+        res.then(data => {
+          setOptions(data)
+          setLoading(false)
+        })
       }else{
         setOptions(res)
       }
+      setIsOpen(true)
     }else{
       setOptions([])
+      setIsOpen(false)
     }
     setSelectedIndex(-1);
   }, [debouncedVal])
@@ -78,21 +87,25 @@ export const AutoComplete: React.FC<AutoCompleteProps> = (props) => {
 
   const renderDropdown = () => {
     return (
-      <Transition in={options.length > 0} timeout={300} animation="scale-top">
-        <ul className="auto-complete-dropdown">
-          {
-            options.map((item, i) => {
-              const classesItem = classNames("auto-complete-dropdown-item", {
-                "auto-complete-dropdown-item-selected": i === selectedIndex
-              })
-              return (
-                <li className={classesItem} key={i} onClick={() => handleSelectItem(item)}>
-                  {renderTemplate(item)}
-                </li>
-              )
-            })
-          }
-        </ul>
+      <Transition in={isOpen} timeout={300} animation="scale-top">
+        <div className="auto-complete-dropdown-wrapper">
+          <Spin description="loading..." spinning={loading}>
+            <ul className="auto-complete-dropdown">
+              {
+                options.map((item, i) => {
+                  const classesItem = classNames("auto-complete-dropdown-item", {
+                    "auto-complete-dropdown-item-selected": i === selectedIndex
+                  })
+                  return (
+                    <li className={classesItem} key={i} onClick={() => handleSelectItem(item)}>
+                      {renderTemplate(item)}
+                    </li>
+                  )
+                })
+              }
+            </ul>
+          </Spin>
+        </div>
       </Transition>
     )
   }
@@ -104,6 +117,7 @@ export const AutoComplete: React.FC<AutoCompleteProps> = (props) => {
         value={val} 
         onChange={onChange} 
         onKeyDown={handleKeyDown} 
+        onFocus={() => options.length>0 && setIsOpen(true)}
         {...resetProps} 
       />
       {renderDropdown()}

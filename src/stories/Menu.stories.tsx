@@ -4,7 +4,7 @@ import { action } from "@storybook/addon-actions"
 import {Menu, MenuItem, SubMenu} from "../components/index"
 
 export default {
-  title: 'Example/Menu',
+  title: 'Example/Menu 菜单',
   component: Menu,
   subcomponents: {MenuItem, SubMenu}
 } as ComponentMeta<typeof Menu>;

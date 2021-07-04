@@ -4,7 +4,7 @@ import { Icon } from "../components"
 import {Search, User, Right} from "@icon-park/react"
 
 export default {
-  title: 'Example/Icon',
+  title: 'Example/Icon 图标',
   component: Icon
 } as ComponentMeta<typeof Icon>;
 

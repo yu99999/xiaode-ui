@@ -21,3 +21,19 @@
     transform-origin: @origin;
   }
 }
+
+@theme-colors: {
+  primary: @primary;
+  secondary: @secondary;
+  success: @success;
+  info: @info;
+  warning: @warning;
+  danger: @danger;
+  light: @light;
+  default: @default;
+};
+
+@keyframes rotate-animation {
+  0%{transform: rotate(0deg);transform-origin: center;}
+  100%{transform: rotate(360deg);transform-origin: center;}
+}

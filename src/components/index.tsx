@@ -6,6 +6,9 @@ import { SubMenu } from "./Menu/submenu";
 import { MenuItem } from "./Menu/menuItem";
 import { Input } from "./Input/input"
 import { AutoComplete } from "./AutoComplete/autoComplete";
+import { Upload } from "./Upload/upload";
+import { Progress } from "./Progress/progress";
+import { Spin } from "./Spin/spin"
 
 export {
   Button,
@@ -15,5 +18,8 @@ export {
   Icon,
   Transition,
   Input,
-  AutoComplete
+  AutoComplete,
+  Upload,
+  Progress,
+  Spin
 }

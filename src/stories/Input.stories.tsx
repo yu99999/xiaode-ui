@@ -5,7 +5,7 @@ import {Icon} from "../components"
 import {Search, User} from "@icon-park/react"
 
 export default {
-  title: 'Example/Input',
+  title: 'Example/Input 输入框',
   component: Input
 } as ComponentMeta<typeof Input>;
 
