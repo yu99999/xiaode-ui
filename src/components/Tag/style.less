@@ -1,0 +1,49 @@
+@tag-height-sm: 1.4rem;
+@tag-height-base: 1.6rem;
+@tag-height-lg: 1.9rem;
+@tag-padding-x-sm: .5rem;
+@tag-padding-x-base: .6rem;
+@tag-padding-x-lg: .8rem;
+
+.tag-size(@size, @tag-padding-x, @tag-height){
+  &.tag-size-@{size}{
+    padding: 0 @tag-padding-x;
+    height: @tag-height;
+    line-height: @tag-height;
+  }
+}
+
+.tag-status(@status, @background-color, @color){
+  &.tag-status-@{status}{
+    background-color: rgba(@background-color, .2);
+    border: 1px solid rgba(@background-color, .3);
+    color: @color;
+    .tag-close:hover .icon{
+      background-color: rgba(@background-color, .3);
+      border-radius: 50%;
+    }
+  }
+}
+
+.tag{
+  box-sizing: border-box;
+  display: inline-block;
+  font-size: .8rem;
+  border-radius: .2rem;
+
+  .tag-size(small, @tag-padding-x-sm, @tag-height-sm);
+  .tag-size(middle, @tag-padding-x-base, @tag-height-base);
+  .tag-size(large, @tag-padding-x-lg, @tag-height-lg);
+
+  .tag-status(primary, @primary, @primary);
+  .tag-status(success, @success, @success);
+  .tag-status(danger, @danger, @danger);
+  .tag-status(warning, @warning, @warning);
+  .tag-status(info, @info, @info);
+
+  .tag-close{
+    margin-left: .3rem;
+    display: inline-block;
+    cursor: pointer;
+  }
+}

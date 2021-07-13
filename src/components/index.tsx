@@ -9,6 +9,9 @@ import { AutoComplete } from "./AutoComplete/autoComplete";
 import { Upload } from "./Upload/upload";
 import { Progress } from "./Progress/progress";
 import { Spin } from "./Spin/spin"
+import { Select } from "./Select/select";
+import { Option } from "./Select/option";
+import { Tag } from "./Tag/tag";
 
 export {
   Button,
@@ -21,5 +24,8 @@ export {
   AutoComplete,
   Upload,
   Progress,
-  Spin
+  Spin,
+  Select,
+  Option,
+  Tag
 }
