@@ -1,3 +1,30 @@
+## 安装
 
-storybook 默认会启用 tree-shaking 所以引入的 less 文件可以在解析 loader 配置 sideEffects: true
-css-loader 启用 module: true 会将类名编译为哈希字符串
+```
+npm install xiaode-ui --save
+```
+
+
+
+## 使用
+
+引入样式
+
+```
+import "xiaode-ui/dist/index.css"
+```
+
+引入组件
+
+```
+import {Button} from "xiaode-ui"
+```
+
+
+
+
+
+
+
+
+
