@@ -1,12 +1,16 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { action } from "@storybook/addon-actions"
-import { Select, Option } from "../components/index"
+import { Select } from "../components"
+
+const {Option} = Select
 
 export default {
   title: 'Example/Select 选择器',
   component: Select,
-  subcomponents: {Option}
+  subcomponents: {
+    "Select.Option": Option
+  }
 } as ComponentMeta<typeof Select>;
 
 export const Primary = () => {

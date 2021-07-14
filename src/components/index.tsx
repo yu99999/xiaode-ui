@@ -1,31 +1,25 @@
-import { Button } from "./Button/button";
-import { Menu } from "./Menu/menu";
-import { Icon } from "./Icon/icon";
-import { Transition } from "./Transition/transition";
-import { SubMenu } from "./Menu/submenu";
-import { MenuItem } from "./Menu/menuItem";
-import { Input } from "./Input/input"
-import { AutoComplete } from "./AutoComplete/autoComplete";
-import { Upload } from "./Upload/upload";
-import { Progress } from "./Progress/progress";
-import { Spin } from "./Spin/spin"
-import { Select } from "./Select/select";
-import { Option } from "./Select/option";
-import { Tag } from "./Tag/tag";
+export { default as Button } from "./Button"
 
-export {
-  Button,
-  Menu,
-  SubMenu,
-  MenuItem,
-  Icon,
-  Transition,
-  Input,
-  AutoComplete,
-  Upload,
-  Progress,
-  Spin,
-  Select,
-  Option,
-  Tag
-}
+export { default as AutoComplete } from "./AutoComplete"
+
+export { default as Icon } from "./Icon"
+
+export { default as Input } from "./Input"
+
+export { default as Menu } from "./Menu"
+
+export { default as Progress } from "./Progress"
+
+export { default as Select } from "./Select"
+
+export { default as Spin } from "./Spin"
+
+export { default as Tag } from "./Tag"
+
+export { default as Transition } from "./Transition"
+
+export { default as Upload } from "./Upload"
+
+
+
+

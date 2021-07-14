@@ -1,8 +1,6 @@
 import React, { FC, useState } from 'react'
 import {
   Menu,
-  MenuItem,
-  SubMenu,
   Transition,
   Button,
 } from "./components/index"

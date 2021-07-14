@@ -1,8 +1,9 @@
 import React from "react";
 import {fireEvent, render, RenderResult, waitFor} from '@testing-library/react'
-import {Menu, MenuItem, SubMenu} from "../index"
+import {Menu} from "../index"
 import {MenuProps} from "./menu"
 
+const {Item: MenuItem, SubMenu} = Menu
 
 const genMenu = (props: MenuProps) => {
   return (

@@ -37,7 +37,7 @@ export const Select: React.FC<SelectProps> = (props) => {
     clickEvent,
     hoverEvent,
     onChooseItem
-  } = useSelect(false, multiple, hoverTrigger, onSelect, selectRef, onChange)
+  } = useSelect({defaultOpen: false, isMulti: multiple, hoverTrigger, onSelect, targetRef: selectRef, onChange})
 
   const currentContext: ContextItem = {
     values,
@@ -79,7 +79,7 @@ export const Select: React.FC<SelectProps> = (props) => {
       <div className="select-input" {...clickEvent}>
         <div className="select-input-value">
           {multiple && renderMultiple()}
-          <span className="select-input-value-radio">{multiple ? "" : values[0]?.label || ""}</span>
+          <span className="select-input-value-radio">{multiple ? "" : values[0]?.label || values[0]?.value || values[0]?.key || ""}</span>
         </div>
         <Input 
           placeholder={values.length>0 ? "" : placeholder}

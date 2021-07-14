@@ -1,7 +1,9 @@
 import React from "react";
 import { render, fireEvent, RenderResult, waitFor } from "@testing-library/react";
-import { Select, SelectProps } from "./select"
-import { Option } from "./option";
+import { SelectProps } from "./select"
+import Select from "./";
+
+const {Option} = Select;
 
 const renderSelect = (props) => {
   return (

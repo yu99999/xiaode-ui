@@ -1,25 +1,42 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import {useClickAway} from "./"
 
 export interface SelectItemProps{
-  value: string | number;
+  value?: string | number;
   key: string;
-  label: React.ReactNode;
+  label?: React.ReactNode;
 }
 
-
-const useSelect = (
+interface useSelectProps{
   defaultOpen: boolean,
   isMulti: boolean,
   hoverTrigger: boolean,
   onSelect?: (option: SelectItemProps) => void,
   targetRef?: React.RefObject<HTMLElement>, 
   onChange?: (options: SelectItemProps | SelectItemProps[]) => void,
+  onDropdownVisibleChange?: (isOpen: boolean) => void
+}
+
+
+const useSelect = (
+  {
+    defaultOpen,
+    isMulti,
+    hoverTrigger,
+    onSelect,
+    targetRef,
+    onChange,
+    onDropdownVisibleChange
+  }: useSelectProps
 ) => {
   const [isOpen, setIsOpen] = useState(defaultOpen)
   const [values, setValues] = useState<SelectItemProps[]>([])
 
   targetRef && useClickAway(targetRef, () => {setIsOpen(false)})
+
+  useEffect(() => {
+    onDropdownVisibleChange && onDropdownVisibleChange(isOpen)
+  }, [isOpen])
   
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();

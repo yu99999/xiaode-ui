@@ -1,34 +1,37 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { action } from "@storybook/addon-actions"
-import {Menu, MenuItem, SubMenu} from "../components/index"
+import Menu from "../components/Menu"
 
 export default {
   title: 'Example/Menu 菜单',
   component: Menu,
-  subcomponents: {MenuItem, SubMenu}
+  subcomponents: {
+    "Menu.Item": Menu.Item, 
+    "Menu.SubMenu": Menu.SubMenu
+  }
 } as ComponentMeta<typeof Menu>;
 
 export const TopMenu = () => {
   return (
     <Menu onSelect={action("导航到")} defalutIndex="three">
-      <MenuItem>
+      <Menu.Item>
         导航一
-      </MenuItem>
-      <MenuItem disabled>
+      </Menu.Item>
+      <Menu.Item disabled>
         disabled -- 不可选
-      </MenuItem>
-      <MenuItem index="three">
+      </Menu.Item>
+      <Menu.Item index="three">
         three
-      </MenuItem>
-      <SubMenu title="下拉菜单" index="dropdown">
-        <MenuItem index="drop1">
+      </Menu.Item>
+      <Menu.SubMenu title="下拉菜单" index="dropdown">
+        <Menu.Item index="drop1">
           drop1
-        </MenuItem>
-        <MenuItem>
+        </Menu.Item>
+        <Menu.Item>
           drop2
-        </MenuItem>
-      </SubMenu>
+        </Menu.Item>
+      </Menu.SubMenu>
     </Menu>
   )
 }
@@ -37,23 +40,23 @@ TopMenu.storyName = "顶部导航"
 export const VerticalMenu = () => {
   return (
     <Menu mode="vertical" onSelect={action("导航到")} style={{width: 200}} defaultOpenSubMenus={["dropdown"]}>
-      <MenuItem>
+      <Menu.Item>
         导航一
-      </MenuItem>
-      <MenuItem disabled>
+      </Menu.Item>
+      <Menu.Item disabled>
         disabled -- 不可选
-      </MenuItem>
-      <MenuItem index="three">
+      </Menu.Item>
+      <Menu.Item index="three">
         three
-      </MenuItem>
-      <SubMenu title="下拉菜单" index="dropdown">
-        <MenuItem index="drop1">
+      </Menu.Item>
+      <Menu.SubMenu title="下拉菜单" index="dropdown">
+        <Menu.Item index="drop1">
           drop1
-        </MenuItem>
-        <MenuItem>
+        </Menu.Item>
+        <Menu.Item>
           drop2
-        </MenuItem>
-      </SubMenu>
+        </Menu.Item>
+      </Menu.SubMenu>
     </Menu>
   )
 }

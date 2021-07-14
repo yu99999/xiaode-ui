@@ -4,6 +4,7 @@ import {CSSTransitionProps} from 'react-transition-group/CSSTransition'
 
 type AnimationName = 'scale-top' | 'scale-bottom' | 'scale-left' | 'scale-right'
 interface TransitionProps{
+  /** 动画名称 */
   animation?: AnimationName
 }
 

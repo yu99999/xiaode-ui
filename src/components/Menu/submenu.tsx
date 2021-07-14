@@ -4,6 +4,7 @@ import {MenuContext} from './menu'
 import {MenuItemProps} from './menuItem'
 import {Down} from '@icon-park/react'
 import {Transition, Icon} from '../index'
+import {useSelect} from "../../hooks/index"
 
 interface SubMenuProps{
   /** 唯一标志 */
@@ -18,12 +19,16 @@ export const SubMenu: React.FC<SubMenuProps> = (props) => {
   const {index, title, className, children} = props;
 
   const defaultOpenSubMenus = context.defaultOpenSubMenus as string[];
-  const isOpen: boolean = (index && context.mode === "vertical") ? defaultOpenSubMenus.includes(index) : false
-  const [open, setOpen] = useState(isOpen)
+  const {isOpen, clickEvent, hoverEvent} = useSelect({
+    defaultOpen: Boolean(index && context.mode === "vertical" && defaultOpenSubMenus.includes(index)),
+    isMulti: false,
+    hoverTrigger: context.mode !== "vertical",
+
+  })
 
   const renderChildren = () => {
     const wrapperClasses = classNames("sub-menu", {
-      "sub-menu-open": open
+      "sub-menu-open": isOpen
     })
     // 过滤出无效的 child，以及自动生成索引
     const list = React.Children.map(children, (child, i) => {
@@ -36,7 +41,7 @@ export const SubMenu: React.FC<SubMenuProps> = (props) => {
     })
 
     return (
-      <Transition in={open} timeout={300} animation="scale-top" unmountOnExit>
+      <Transition in={isOpen} timeout={300} animation="scale-top" unmountOnExit>
         <ul className={wrapperClasses}>
           {list}
         </ul>
@@ -44,34 +49,14 @@ export const SubMenu: React.FC<SubMenuProps> = (props) => {
     )
   }
 
-
-  const handleClick = (e: React.MouseEvent) => {
-    e.preventDefault();
-    setOpen(!open)
-  }
-  let timer: any = null;
-  const handleHover = (e: React.MouseEvent, flag: boolean) => {
-    clearTimeout(timer);
-    e.preventDefault();
-    timer = setTimeout(() => {
-      setOpen(flag)
-    }, 200)
-  }
-  
-  const clickEvent = context.mode === "vertical" ? {onClick: handleClick} : {};
-  const hoverEvent = context.mode === "horizontal" ? {
-    onMouseEnter: (e: React.MouseEvent) => {handleHover(e, true)},
-    onMouseLeave: (e: React.MouseEvent) => {handleHover(e, false)}
-  } : {}
-
-  const classes = classNames('sub-menu-wrapper menu-item', className, {
-    'menu-item-actived': index === context.index?.split("-")[0],
-    'sub-menu-wrapper-isOpened': open
+  const classes = classNames('sub-menu-wrapper', className, {
+    'sub-menu-actived': index === context.index?.split("-")[0],
+    'sub-menu-wrapper-isOpened': isOpen
   })
 
   return (
     <li key={index} className={classes} {...hoverEvent}>
-      <div className="sub-menu-title" {...clickEvent}>
+      <div className="sub-menu-title menu-item" {...clickEvent}>
         {title}
         <Icon IconOrigin={Down} className="icon-arrow" />
       </div>

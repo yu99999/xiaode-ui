@@ -6,7 +6,7 @@ const resolveApp = relativePath => path.resolve(__dirname, '../', relativePath)
 
 module.exports = {
   entryPath: resolveApp('src/index.tsx'),
-  outputPath: resolveApp('dist'),
+  outputPath: resolveApp('output'),
   appHtml: resolveApp('public/index.html'),
   faviconPath: resolveApp('public/favicon.ico'),
   alias: resolveApp('src'),
