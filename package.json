@@ -17,7 +17,7 @@
     "build-css": "lessc ./src/styles/index.less ./dist/index.css",
     "build-clean": "rimraf ./dist",
     "build-dist": "npm run build-clean && npm run build-ts && npm run build-css",
-    "prepublish": "npm run build-dist"
+    "prepublishOnly": "npm run build-dist"
   },
   "keywords": [
     "React",
