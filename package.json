@@ -10,7 +10,7 @@
     "build": "webpack --config ./build/webpack.prod.js",
     "dev": "webpack-dev-server --config ./build/webpack.dev.js",
     "dll": "webpack --config ./build/webpack.dll.js",
-    "test": "jest --watch",
+    "test": "jest",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "build-ts": "tsc -p tsconfig.build.json",
