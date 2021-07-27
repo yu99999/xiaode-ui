@@ -13,7 +13,7 @@ const Template: ComponentStory<typeof Upload> = (args) => <Upload {...args}/>;
 
 export const Primary = Template.bind({})
 Primary.args = {
-  action: "http://jsonplaceholder.typicode.com/posts/",
+  action: "https://jsonplaceholder.typicode.com/posts/",
   name: "fileName",
   children: (<Button btnType="primary">上传</Button>),
   onChange: () => {},
@@ -47,7 +47,7 @@ export const BeforeUpload = () => {
 
   return (
     <Upload 
-      action="http://jsonplaceholder.typicode.com/posts/"
+      action="https://jsonplaceholder.typicode.com/posts/"
       beforeUpload={beforeUpload}
       onChange={onChange}
       onSuccess={onSuccess}
@@ -63,7 +63,7 @@ BeforeUpload.storyName = "上传生命周期"
 export const Drag = () => {
   return (
     <Upload 
-      action="http://jsonplaceholder.typicode.com/posts/"
+      action="https://jsonplaceholder.typicode.com/posts/"
       drag
     >
       <Icon IconOrigin={UploadOne} size={40} design="primary" />
@@ -88,7 +88,7 @@ export const PngUpload = () => {
 
   return (
     <Upload 
-      action="http://jsonplaceholder.typicode.com/posts/"
+      action="https://jsonplaceholder.typicode.com/posts/"
       beforeUpload={beforeUpload}
       accept="image/png"
     >
