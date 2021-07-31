@@ -1,6 +1,4 @@
-import React, { ChangeEvent, ChangeEventHandler, useRef, useState } from "react";
-import classNames from "classnames";
-import { Button } from "..";
+import React, { ChangeEvent, useRef, useState } from "react";
 import axios from "axios";
 import UploadList from "./uploadList";
 import DragUpload from "./dragUpload";
@@ -71,7 +69,7 @@ export const Upload: React.FC<UploadProps> = (props) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [fileList, setFileList] = useState<UploadFile[]>([]);
   
-  const handleClick = (e) => {
+  const handleClick = () => {
     if(fileInputRef.current){
       fileInputRef.current.click()
     }

@@ -1,5 +1,4 @@
-import React, { useRef, useState } from "react";
-import classNames from "classnames";
+import React, { useRef } from "react";
 import {OptionProps} from "./option"
 import { Input, Icon, Transition, Tag } from "..";
 import useSelect, { SelectItemProps } from "../../hooks/useSelect"
@@ -47,7 +46,7 @@ export const Select: React.FC<SelectProps> = (props) => {
 
   const renderChildren = () => {
 
-    return React.Children.map(children, (child, index) => {
+    return React.Children.map(children, (child) => {
       const childEl = child as React.FunctionComponentElement<OptionProps>
       if(childEl.type.displayName === 'Option'){
         return childEl

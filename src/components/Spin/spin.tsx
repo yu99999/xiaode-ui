@@ -13,7 +13,7 @@ export interface SpinProps{
 }
 
 export const Spin: React.FC<SpinProps> = (props) => {
-  const {size, spinning, description, container, children} = props;
+  const {size, spinning, description, children} = props;
 
 
   const renderSpin = () => {

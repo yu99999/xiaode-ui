@@ -1,4 +1,4 @@
-import React, { DragEvent, MouseEvent, useState } from "react";
+import React, { DragEvent, useState } from "react";
 import classNames from "classnames";
 
 export interface DragUploadProps {

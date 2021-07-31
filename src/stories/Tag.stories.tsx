@@ -1,13 +1,11 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { ComponentMeta } from '@storybook/react';
 import { Tag } from '../components';
 
 export default {
   title: 'Example/Tag 标签',
   component: Tag
 } as ComponentMeta<typeof Tag>;
-
-const Template: ComponentStory<typeof Tag> = (args) => <Tag {...args}/>;
 
 export const Primary = () => {
   return (

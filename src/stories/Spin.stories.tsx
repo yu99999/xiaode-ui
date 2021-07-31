@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { Spin, SpinProps } from '../components/Spin/spin';
+import { Spin } from '../components/Spin/spin';
 import { Button } from '../components';
 
 export default {

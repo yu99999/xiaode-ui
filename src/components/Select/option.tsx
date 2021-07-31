@@ -13,16 +13,18 @@ export interface OptionProps{
 
 export const Option: React.FC<OptionProps> = (props) => {
   const {disabled, value, children} = props;
-  const {values = [], onChooseItem, multiple} = useContext(SelectContext)
+  const {values = [], onChooseItem} = useContext(SelectContext)
 
   const key = value;
   const isSelectedIndex = values.findIndex(item => item.key === key);
 
   const classes = classNames("select-option-dropdown-item", {
-    "select-option-dropdown-item-selected": isSelectedIndex !== -1
+    "select-option-dropdown-item-selected": isSelectedIndex !== -1,
+    "select-option-dropdown-item-disabled": disabled,
   })
 
   const handleChoose = () => {
+    !disabled &&
     onChooseItem && 
     onChooseItem({value, key, label: children})
   }

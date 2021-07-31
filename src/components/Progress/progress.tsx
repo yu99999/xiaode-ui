@@ -1,5 +1,4 @@
 import React from "react";
-import classNames from "classnames";
 
 export interface ProgressProps{
   /** 百分比 */
@@ -14,7 +13,7 @@ export interface ProgressProps{
   style?: React.CSSProperties
 }
 
-export const Progress: React.FC<ProgressProps> = (props) => {
+export const Progress: React.FC<ProgressProps> = React.memo((props) => {
   const {percent, status = "primary", showInfo, strokeHeight = 10, style} = props;
 
   return (
@@ -28,4 +27,4 @@ export const Progress: React.FC<ProgressProps> = (props) => {
       {showInfo && <span className="progress-bar-info">{percent}%</span>}
     </div>
   )
-}
+})

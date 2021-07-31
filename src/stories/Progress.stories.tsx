@@ -1,13 +1,11 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { ComponentMeta } from '@storybook/react';
 import { Progress } from '../components';
 
 export default {
   title: 'Example/Progress 进度条',
   component: Progress
 } as ComponentMeta<typeof Progress>;
-
-const Template: ComponentStory<typeof Progress> = (args) => <Progress {...args}/>;
 
 export const Primary = () => {
   return (

@@ -1,10 +1,8 @@
 import { fireEvent, render, RenderResult, waitFor } from "@testing-library/react";
 import React from "react";
 import {AutoComplete, AutoCompleteProps} from "./autoComplete"
-import axios from "axios";
 
 jest.mock("axios")
-const mockAxios = axios as jest.Mocked<typeof axios>
 
 
 const data = [

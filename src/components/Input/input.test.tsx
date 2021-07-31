@@ -33,8 +33,7 @@ describe("测试 Input 组件", () => {
   })
   
   test('测试 Input 的前缀和后缀图标', () => {
-    const wrapper = render
-    (
+    const wrapper = render(
       <Input 
         prefix={<Icon IconOrigin={User} data-testid="test-prefix" />}
         suffix={<Icon IconOrigin={Search} data-testid="test-suffix" />}

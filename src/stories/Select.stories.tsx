@@ -1,6 +1,5 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { action } from "@storybook/addon-actions"
+import { ComponentMeta } from '@storybook/react';
 import { Select } from "../components"
 
 const {Option} = Select
@@ -21,7 +20,7 @@ export const Primary = () => {
     <Select onChange={onChange} placeholder="选一个吧" style={{width: 400}}>
       <Option value="123">option1</Option>
       <Option value="555">option2</Option>
-      <Option value="666">option3</Option>
+      <Option value="666" disabled>option3</Option>
       <Option value="777">option4</Option>
     </Select>
   )

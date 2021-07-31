@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { ComponentMeta } from "@storybook/react";
 import React from "react";
 import { AutoComplete } from "../components";
 
@@ -6,8 +6,6 @@ export default {
   title: 'Example/AutoComplete 自动完成',
   component: AutoComplete
 } as ComponentMeta<typeof AutoComplete>;
-
-const Template: ComponentStory<typeof AutoComplete> = (args) => <AutoComplete {...args}/>;
 
 export const Primary = () => {
   const data = [

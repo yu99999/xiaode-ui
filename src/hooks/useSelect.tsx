@@ -1,7 +1,7 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import {useClickAway} from "./"
 
-export interface SelectItemProps{
+export type SelectItemProps = {
   value?: string | number;
   key: string;
   label?: React.ReactNode;

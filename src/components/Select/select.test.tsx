@@ -18,7 +18,7 @@ const renderSelect = (props) => {
 
 
 describe("测试 Select 组件", () => {
-  let wrapper: RenderResult, clickEl: HTMLElement, hoverEl: HTMLElement, inputEl: HTMLElement;
+  let wrapper: RenderResult, clickEl: HTMLElement;
   const testProps: SelectProps = {
     onSelect: jest.fn(),
     placeholder: "test",
@@ -27,8 +27,6 @@ describe("测试 Select 组件", () => {
   beforeEach(() => {
     wrapper = render(renderSelect(testProps));
     clickEl = wrapper.container.querySelector(".select-input") as HTMLElement;
-    hoverEl = wrapper.container.querySelector(".select-option") as HTMLElement;
-    inputEl = wrapper.getByPlaceholderText("test") as HTMLElement;
   })
 
   test('测试 Select基础功能', async () => {

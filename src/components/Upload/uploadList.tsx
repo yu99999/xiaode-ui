@@ -1,5 +1,4 @@
 import React from "react";
-import classNames from "classnames";
 import {UploadFile} from "./upload"
 import {Link, Delete, Caution, LoadingOne, Success} from "@icon-park/react"
 import {Icon, Progress} from ".."
@@ -15,7 +14,7 @@ const UploadList: React.FC<UploadListProps> = (props) => {
   return (
     <ul className="upload-list">
       {
-        fileList.map((item, index) => {
+        fileList.map((item) => {
           return (
             <li className={`upload-list-item upload-list-item-status-${item.status}`} key={item.uid}>
               <div style={{display: "flex"}}>
