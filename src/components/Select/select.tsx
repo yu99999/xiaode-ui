@@ -1,8 +1,10 @@
 import React, { useRef } from "react";
 import {OptionProps} from "./option"
-import { Input, Icon, Transition, Tag } from "..";
-import useSelect, { SelectItemProps } from "../../hooks/useSelect"
+import { Input, Icon, Transition, Tag, Spin } from "..";
+import useSelect, { SelectItemProps as ItemProps } from "../../hooks/useSelect"
 import { Down } from "@icon-park/react";
+
+export type SelectItemProps = ItemProps;
 
 export interface SelectProps{
   style?: React.CSSProperties;
@@ -15,7 +17,13 @@ export interface SelectProps{
   /** 被选中时调用，参数为选中项 */
   onSelect?: (option: SelectItemProps) => void
   /** 选中的 options 发生修改时 */
-  onChange?: (option: SelectItemProps | SelectItemProps[]) => void
+  onChange?: (option: SelectItemProps | SelectItemProps[]) => void;
+  
+  hiddenInput?: boolean
+  /** 是否展示下拉菜单 */
+  open?: boolean;
+  /** 是否展示 loading 动画 */
+  loading?: boolean
 }
 
 interface ContextItem{
@@ -27,7 +35,7 @@ interface ContextItem{
 export const SelectContext = React.createContext<ContextItem>({})
 
 export const Select: React.FC<SelectProps> = (props) => {
-  const {style, placeholder, multiple = false, hoverTrigger = false, onSelect, onChange, children} = props;
+  const {style, placeholder, multiple = false, hoverTrigger = false, onSelect, onChange, hiddenInput = false, open, loading = false, children} = props;
   const selectRef = useRef<HTMLDivElement>(null);
 
   const {
@@ -75,24 +83,30 @@ export const Select: React.FC<SelectProps> = (props) => {
   
   return (
     <div className="select-option" style={style} ref={selectRef} {...hoverEvent}>
-      <div className="select-input" {...clickEvent}>
-        <div className="select-input-value">
-          {multiple && renderMultiple()}
-          <span className="select-input-value-radio">{multiple ? "" : values[0]?.label || values[0]?.value || values[0]?.key || ""}</span>
-        </div>
-        <Input 
-          placeholder={values.length>0 ? "" : placeholder}
-          readOnly
-          style={{cursor: "pointer"}}
-          suffix={<Icon IconOrigin={Down} />}
-        />
-      </div>
-      <Transition in={isOpen} timeout={300} animation="scale-top">
-        <ul className="select-option-dropdown">
-          <SelectContext.Provider value={currentContext}>
-            {renderChildren()}
-          </SelectContext.Provider>
-        </ul>
+      {
+        !hiddenInput ? (
+          <div className="select-input" {...clickEvent}>
+            <div className="select-input-value">
+              {multiple && renderMultiple()}
+              <span className="select-input-value-radio">{multiple ? "" : values[0]?.label || values[0]?.value || values[0]?.key || ""}</span>
+            </div>
+            <Input 
+              placeholder={values.length>0 ? "" : placeholder}
+              readOnly
+              style={{cursor: "pointer"}}
+              suffix={<Icon IconOrigin={Down} />}
+            />
+          </div>
+        ) : null
+      }
+      <Transition in={open === undefined ? isOpen : open} timeout={300} animation="scale-top">
+        <Spin description="loading..." spinning={loading}>
+          <ul className="select-option-dropdown">
+            <SelectContext.Provider value={currentContext}>
+              {renderChildren()}
+            </SelectContext.Provider>
+          </ul>
+        </Spin>
       </Transition>
     </div>
   )
@@ -100,5 +114,7 @@ export const Select: React.FC<SelectProps> = (props) => {
 
 Select.defaultProps = {
   multiple: false,
-  hoverTrigger: false
+  hoverTrigger: false,
+  hiddenInput: false,
+  loading: false
 }

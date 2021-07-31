@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import {useClickAway} from "./"
 
-export type SelectItemProps = {
-  value?: string | number;
-  key: string;
+export type SelectItemProps<T = {}> = T & {
+  value: string;
+  key?: string;
   label?: React.ReactNode;
 }
 

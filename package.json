@@ -7,7 +7,8 @@
   "module": "dist/components/index.js",
   "types": "dist/components/index.d.ts",
   "scripts": {
-    "test": "jest",
+    "test": "jest --watchAll",
+    "test:nowatch": "jest",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "build-clean": "rimraf ./dist",
@@ -15,7 +16,13 @@
     "build-less": "lessc ./src ./dist",
     "build-css": "lessc ./src/styles/index.less ./dist/index.css",
     "build": "npm run build-clean && npm run build-ts && npm run build-css",
-    "prepublishOnly": "npm run build-dist"
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx src",
+    "prepublishOnly": "npm run test:no:watch && npm run lint && npm run build"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run test:no:watch && npm run lint"
+    }
   },
   "keywords": [
     "React",
@@ -24,8 +31,13 @@
   "files": [
     "dist"
   ],
-  "author": "",
-  "license": "ISC",
+  "author": "yds8888",
+  "homepage": "https://yudeshengya.github.io/xiaode-ui/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yudeshengya/xiaode-ui"
+  },
+  "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.12.9",
     "@babel/plugin-transform-runtime": "^7.12.10",
@@ -62,6 +74,7 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^4.5.0",
+    "husky": "^7.0.1",
     "identity-obj-proxy": "^3.0.0",
     "less": "^3.12.2",
     "less-loader": "^7.1.0",

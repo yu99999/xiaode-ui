@@ -57,8 +57,8 @@ export const Show = () => {
     return data.filter(item => item.value.includes(value))
   }
 
-  const onSelect = (item: DataType) => {
-    console.log(`点击了 id: ${item.id}`)
+  const onSelect = (item) => {
+    console.log(`点击了 ${item.value}`)
   }
   const renderOptions = (item: DataType) => (
     <div>id: {item.id} ----- value: {item.value}</div>
