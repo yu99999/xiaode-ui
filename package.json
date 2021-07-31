@@ -17,7 +17,6 @@
     "build-css": "lessc ./src/styles/index.less ./dist/index.css",
     "build": "npm run build-clean && npm run build-ts && npm run build-css",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx src",
-    "prepare": "husky install",
     "prepublishOnly": "npm run test:nowatch && npm run lint && npm run build"
   },
   "husky": {
