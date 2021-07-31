@@ -49,7 +49,7 @@ describe("测试 Upload 组件", () => {
       rawInfo: testFile,
       status: "uploading",
       percent: 0,
-      name: "test.jp"
+      name: "test.j"
     }))
     expect(wrapper.queryByText("test.jpg")).toBeInTheDocument()
     expect(wrapper.container.querySelector(".upload-list-item")).toHaveClass("upload-list-item-status-success")
