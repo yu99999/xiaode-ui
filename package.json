@@ -1,6 +1,6 @@
 {
   "name": "xiaode-ui",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "sideEffects": false,
   "main": "dist/components/index.js",
