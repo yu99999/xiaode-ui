@@ -4,6 +4,7 @@ import classNames from "classnames";
 import {useDebounce, useClickAway} from "../../hooks";
 import { Select } from "..";
 import { SelectItemProps } from "../Select/select"
+import { prefixClass } from "../../provider"
 
 export type AutoCompleteDataType<T = {}> = T & SelectItemProps;
 
@@ -127,7 +128,7 @@ export const AutoComplete: React.FC<AutoCompleteProps> = (props) => {
     // )
   }
 
-  const classes = classNames("auto-complete", className, {})
+  const classes = classNames(`${prefixClass}-auto-complete`, className, {})
   return (
     <div className={classes} style={style} ref={autoCompleteRef}>
       <Input 

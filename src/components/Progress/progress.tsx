@@ -1,4 +1,5 @@
 import React from "react";
+import { prefixClass } from "../../provider"
 
 export interface ProgressProps{
   /** 百分比 */
@@ -17,14 +18,14 @@ export const Progress: React.FC<ProgressProps> = React.memo((props) => {
   const {percent, status = "primary", showInfo, strokeHeight = 10, style} = props;
 
   return (
-    <div className="progress-bar-wrapper" style={style}>
-      <div className="progress-bar-outer">
+    <div className={`${prefixClass}-progress-bar-wrapper`} style={style}>
+      <div className={`${prefixClass}-progress-bar-outer`}>
         <div 
-          className={`progress-bar progress-bar-status-${status}`} 
+          className={`${prefixClass}-progress-bar ${prefixClass}-progress-bar-status-${status}`} 
           style={{height: strokeHeight, width: `${percent}%`}}
         ></div>
       </div>
-      {showInfo && <span className="progress-bar-info">{percent}%</span>}
+      {showInfo && <span className={`${prefixClass}-progress-bar-info`}>{percent}%</span>}
     </div>
   )
 })

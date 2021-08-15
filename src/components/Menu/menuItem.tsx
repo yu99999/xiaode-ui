@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import classNames from "classnames";
 import { MenuContext } from './menu'
+import { prefixClass } from "../../provider"
 
 export interface MenuItemProps{
   /** 唯一标志 */
@@ -14,9 +15,9 @@ export interface MenuItemProps{
 export const MenuItem: React.FC<MenuItemProps> = (props) => {
   const {index, disabled, className, style, children} = props;
   const context = useContext(MenuContext)
-  const classes = classNames('menu-item', className, {
-    'menu-item-disabled': disabled,
-    'menu-item-actived': index === context.index
+  const classes = classNames(`${prefixClass}-menu-item`, className, {
+    [`${prefixClass}-menu-item-disabled`]: disabled,
+    [`${prefixClass}-menu-item-actived`]: index === context.index
   })
   const onClick = (e: React.MouseEvent) => {
     e.preventDefault()

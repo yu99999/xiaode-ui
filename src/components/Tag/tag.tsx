@@ -2,6 +2,7 @@ import React from "react";
 import classNames from "classnames";
 import { Icon } from "../Icon/icon";
 import { CloseSmall } from "@icon-park/react"
+import { prefixClass } from "../../provider"
 
 export interface TagProps{
   /** 设置标签大小 */
@@ -17,16 +18,16 @@ export interface TagProps{
 export const Tag: React.FC<TagProps> = (props) => {
   const {size, status, closable, onClose, children} = props;
 
-  const classes = classNames("tag", {
-    [`tag-status-${status}`]: status,
-    [`tag-size-${size}`]: size,
+  const classes = classNames(`${prefixClass}-tag`, {
+    [`${prefixClass}-tag-status-${status}`]: status,
+    [`${prefixClass}-tag-size-${size}`]: size,
   })
   return (
     <span className={classes}>
       {children}
       {
         closable && 
-        <span className="tag-close" onClick={onClose}>
+        <span className={`${prefixClass}-tag-close`} onClick={onClose}>
           <Icon IconOrigin={CloseSmall} />
         </span>
       }

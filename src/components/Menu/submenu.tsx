@@ -5,6 +5,7 @@ import {MenuItemProps} from './menuItem'
 import {Down} from '@icon-park/react'
 import {Transition, Icon} from '../index'
 import {useSelect} from "../../hooks/index"
+import { prefixClass } from "../../provider"
 
 interface SubMenuProps{
   /** 唯一标志 */
@@ -27,8 +28,8 @@ export const SubMenu: React.FC<SubMenuProps> = (props) => {
   })
 
   const renderChildren = () => {
-    const wrapperClasses = classNames("sub-menu", {
-      "sub-menu-open": isOpen
+    const wrapperClasses = classNames(`${prefixClass}-sub-menu`, {
+      [`${prefixClass}-sub-menu-open`]: isOpen
     })
     // 过滤出无效的 child，以及自动生成索引
     const list = React.Children.map(children, (child, i) => {
@@ -49,14 +50,14 @@ export const SubMenu: React.FC<SubMenuProps> = (props) => {
     )
   }
 
-  const classes = classNames('sub-menu-wrapper', className, {
-    'sub-menu-actived': index === context.index?.split("-")[0],
-    'sub-menu-wrapper-isOpened': isOpen
+  const classes = classNames(`${prefixClass}-sub-menu-wrapper`, className, {
+    [`${prefixClass}-sub-menu-actived`]: index === context.index?.split("-")[0],
+    [`${prefixClass}-sub-menu-wrapper-isOpened`]: isOpen
   })
 
   return (
     <li key={index} className={classes} {...hoverEvent}>
-      <div className="sub-menu-title menu-item" {...clickEvent}>
+      <div className={`${prefixClass}-sub-menu-title ${prefixClass}-menu-item`} {...clickEvent}>
         {title}
         <Icon IconOrigin={Down} className="icon-arrow" />
       </div>

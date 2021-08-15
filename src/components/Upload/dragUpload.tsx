@@ -1,5 +1,6 @@
 import React, { DragEvent, useState } from "react";
 import classNames from "classnames";
+import { prefixClass } from "../../provider"
 
 export interface DragUploadProps {
   onDropFile: (files: FileList) => void
@@ -19,8 +20,8 @@ const DragUpload: React.FC<DragUploadProps> = (props) => {
     onDropFile(e.dataTransfer.files)
   }
 
-  const classes = classNames("drap-upload", {
-    "drap-upload-actived": isDraged
+  const classes = classNames(`${prefixClass}-upload-drap`, {
+    [`${prefixClass}-upload-drap-actived`]: isDraged
   })
 
   return (

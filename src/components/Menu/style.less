@@ -12,21 +12,21 @@
 @sub-menu-item-padding-y: .5rem;
 @sub-menu-item-padding-x: 2.7rem;
 
-.menu{
+.@{prefix-class}-menu{
   display: flex;
   list-style: none;
 
-  .menu-item{
+  .@{prefix-class}-menu-item{
     margin: 0 .2rem;
     position: relative;
     box-sizing: border-box;
     padding: @menu-item-padding-y @menu-item-padding-x;
     transition: @transition;
     cursor: pointer;
-    &.menu-item-actived, &:hover{
+    &.@{prefix-class}-menu-item-actived, &:hover{
       color: @primary;
     }
-    &.menu-item-disabled{
+    &.@{prefix-class}-menu-item-disabled{
       color: @menu-item-disabled-color;
       cursor: not-allowed;
     }
@@ -35,63 +35,63 @@
 
 }
 
-.menu-horizontal{
+.@{prefix-class}-menu-horizontal{
   flex-direction: row;
-  >.menu-item, .menu-item.sub-menu-title{
+  >.@{prefix-class}-menu-item, .@{prefix-class}-menu-item.@{prefix-class}-sub-menu-title{
     border-bottom: @menu-item-border-width solid @menu-item-border-color;
-    &.menu-item-actived, &:hover{
+    &.@{prefix-class}-menu-item-actived, &:hover{
       border-bottom: @menu-item-actived-border-width solid @primary;
     }
-    &.menu-item-disabled{
+    &.@{prefix-class}-menu-item-disabled{
       border-bottom: @menu-item-border-width solid @menu-item-border-color;
     }
 
   }
 
-  .sub-menu{
+  .@{prefix-class}-sub-menu{
     position: absolute;
     left: 0; top: 2.8rem;
     box-shadow: @box-shadow;
     padding: .3rem;
-    .menu-item{
+    .@{prefix-class}-menu-item{
       padding: @sub-menu-item-padding-y @sub-menu-item-padding-x;
     }
   }
 
-  .sub-menu-actived .sub-menu-title{
+  .@{prefix-class}-sub-menu-actived .@{prefix-class}-sub-menu-title{
     border-bottom: @menu-item-actived-border-width solid @primary;
   }
 }
 
-.menu-vertical{
+.@{prefix-class}-menu-vertical{
   flex-direction: column;
-  .menu-item{
+  .@{prefix-class}-menu-item{
     border-right: @menu-item-border-width solid @menu-item-border-color;
-    &:not(.sub-menu-title){
+    &:not(.@{prefix-class}-sub-menu-title){
       &:hover{
         border-right: @menu-item-actived-border-width solid @primary;
       }
-      &.menu-item-actived{
+      &.@{prefix-class}-menu-item-actived{
         background-color: rgba(@primary, .1);
         border-right: @menu-item-actived-border-width solid @primary;
       }
-      &.menu-item-disabled{
+      &.@{prefix-class}-menu-item-disabled{
         border-right: @menu-item-border-width solid @menu-item-border-color;
       }
     }
   }
 
-  .sub-menu{
-    .menu-item{
+  .@{prefix-class}-sub-menu{
+    .@{prefix-class}-menu-item{
       padding: @sub-menu-item-padding-y @sub-menu-item-padding-x;
     }
   }
 
 }
 
-.sub-menu-wrapper{
+.@{prefix-class}-sub-menu-wrapper{
   position: relative;
-  .sub-menu-title{
+  .@{prefix-class}-sub-menu-title{
     display: flex;
     align-items: center;
     .icon-arrow{
@@ -101,21 +101,21 @@
       margin-left: 3px;
     }
   }
-  &.sub-menu-wrapper-isOpened .icon-arrow{
+  &.@{prefix-class}-sub-menu-wrapper-isOpened .icon-arrow{
     transform: rotate(180deg) !important;
   }
-  &.sub-menu-actived{
+  &.@{prefix-class}-sub-menu-actived{
     color: @primary;
   }
 
-  .sub-menu{
+  .@{prefix-class}-sub-menu{
     list-style: none;
-    .menu-item{
+    .@{prefix-class}-menu-item{
       color: @font-base-color;
-      &.menu-item-actived, &:hover{
+      &.@{prefix-class}-menu-item-actived, &:hover{
         color: @primary;
       }
-      &.menu-item-disabled{
+      &.@{prefix-class}-menu-item-disabled{
         color: @menu-item-disabled-color;
         cursor: not-allowed;
       }

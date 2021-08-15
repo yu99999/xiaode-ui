@@ -1,6 +1,7 @@
 import React from 'react'
 import {fireEvent, render} from '@testing-library/react'
 import {Button} from './button'
+import { prefixClass } from "../../provider"
 
 describe("测试 Button 组件", () => {
   test('测试 default button', () => {
@@ -10,7 +11,7 @@ describe("测试 Button 组件", () => {
     expect(el).toBeInTheDocument()
     expect(el?.tagName).toEqual('BUTTON')
     expect(el.disabled).toBeFalsy()
-    expect(el).toHaveClass('btn btn-defalut')
+    expect(el).toHaveClass(`${prefixClass}-btn ${prefixClass}-btn-defalut`)
     fireEvent.click(el)
     expect(fn).toHaveBeenCalled()
   })
@@ -19,7 +20,7 @@ describe("测试 Button 组件", () => {
     const wrapper = render(<Button size="large" btnType="primary" className="hhhh">123</Button>)
     const el = wrapper.queryByText('123')
     expect(el).toBeInTheDocument()
-    expect(el).toHaveClass('btn btn-large btn-primary hhhh')
+    expect(el).toHaveClass(`${prefixClass}-btn ${prefixClass}-btn-large ${prefixClass}-btn-primary hhhh`)
   })
   
   test('测试 link button', () => {
@@ -27,7 +28,7 @@ describe("测试 Button 组件", () => {
     const el = wrapper.queryByText('链接')
     expect(el).toBeInTheDocument()
     expect(el?.tagName).toEqual("A");
-    expect(el).toHaveClass("btn btn-link")
+    expect(el).toHaveClass(`${prefixClass}-btn ${prefixClass}-btn-link`)
     expect(el).toHaveAttribute('href', 'xxx.com')
   })
   

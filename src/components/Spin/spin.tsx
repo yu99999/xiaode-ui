@@ -1,5 +1,6 @@
 import React from "react";
 import classNames from "classnames";
+import { prefixClass } from "../../provider"
 
 export interface SpinProps{
   /** 组件大小 */
@@ -17,26 +18,26 @@ export const Spin: React.FC<SpinProps> = (props) => {
 
 
   const renderSpin = () => {
-    const classes = classNames("spin-spinning-wrapper", {
-      "spin-spinning-wrapper-actived": spinning,
-      "spin-spinning-wrapper-description": description,
-      [`spin-spinning-${size}`]: size
+    const classes = classNames(`${prefixClass}-spin-spinning-wrapper`, {
+      [`${prefixClass}-spin-spinning-wrapper-actived`]: spinning,
+      [`${prefixClass}-spin-spinning-wrapper-description`]: description,
+      [`${prefixClass}-spin-spinning-${size}`]: size
     })
     return (
       <div className={classes}>
-        <span className="spin-spinning">
-          <i className="spin-spinning-item"></i>
-          <i className="spin-spinning-item"></i>
-          <i className="spin-spinning-item"></i>
-          <i className="spin-spinning-item"></i>
-          <i className="spin-spinning-item"></i>
-          <i className="spin-spinning-item"></i>
-          <i className="spin-spinning-item"></i>
-          <i className="spin-spinning-item"></i>
-          <i className="spin-spinning-item"></i>
-          <i className="spin-spinning-item"></i>
+        <span className={`${prefixClass}-spin-spinning`}>
+          <i className={`${prefixClass}-spin-spinning-item`}></i>
+          <i className={`${prefixClass}-spin-spinning-item`}></i>
+          <i className={`${prefixClass}-spin-spinning-item`}></i>
+          <i className={`${prefixClass}-spin-spinning-item`}></i>
+          <i className={`${prefixClass}-spin-spinning-item`}></i>
+          <i className={`${prefixClass}-spin-spinning-item`}></i>
+          <i className={`${prefixClass}-spin-spinning-item`}></i>
+          <i className={`${prefixClass}-spin-spinning-item`}></i>
+          <i className={`${prefixClass}-spin-spinning-item`}></i>
+          <i className={`${prefixClass}-spin-spinning-item`}></i>
         </span>
-        {description && <div className="spin-spinning-description">{description}</div>}
+        {description && <div className={`${prefixClass}-spin-spinning-description`}>{description}</div>}
       </div>
     )
   }
@@ -46,11 +47,11 @@ export const Spin: React.FC<SpinProps> = (props) => {
       {
         children
         ? 
-        <div className="spin-wrapper">
+        <div className={`${prefixClass}-spin-wrapper`}>
           {spinning && renderSpin()}
           {
             children &&
-            <div className={spinning ? "spin-contain" : ""}>
+            <div className={spinning ? `${prefixClass}-spin-contain` : ""}>
               {children}
             </div>
           }

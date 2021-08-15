@@ -3,6 +3,7 @@ import {OptionProps} from "./option"
 import { Input, Icon, Transition, Tag, Spin } from "..";
 import useSelect, { SelectItemProps as ItemProps } from "../../hooks/useSelect"
 import { Down } from "@icon-park/react";
+import { prefixClass } from "../../provider"
 
 export type SelectItemProps = ItemProps;
 
@@ -66,7 +67,7 @@ export const Select: React.FC<SelectProps> = (props) => {
 
   const renderMultiple = () => {
     return (
-      <div className="select-multiple">
+      <div className={`${prefixClass}-select-multiple`}>
         {
           values.map(item => {
             const onClose = (e: React.MouseEvent) => {
@@ -82,13 +83,13 @@ export const Select: React.FC<SelectProps> = (props) => {
   }
   
   return (
-    <div className="select-option" style={style} ref={selectRef} {...hoverEvent}>
+    <div className={`${prefixClass}-select-option`} style={style} ref={selectRef} {...hoverEvent}>
       {
         !hiddenInput ? (
-          <div className="select-input" {...clickEvent}>
-            <div className="select-input-value">
+          <div className={`${prefixClass}-select-input`} {...clickEvent}>
+            <div className={`${prefixClass}-select-input-value`}>
               {multiple && renderMultiple()}
-              <span className="select-input-value-radio">{multiple ? "" : values[0]?.label || values[0]?.value || values[0]?.key || ""}</span>
+              <span className={`${prefixClass}-select-input-value-radio`}>{multiple ? "" : values[0]?.label || values[0]?.value || values[0]?.key || ""}</span>
             </div>
             <Input 
               placeholder={values.length>0 ? "" : placeholder}
@@ -101,7 +102,7 @@ export const Select: React.FC<SelectProps> = (props) => {
       }
       <Transition in={open === undefined ? isOpen : open} timeout={300} animation="scale-top">
         <Spin description="loading..." spinning={loading}>
-          <ul className="select-option-dropdown">
+          <ul className={`${prefixClass}-select-option-dropdown`}>
             <SelectContext.Provider value={currentContext}>
               {renderChildren()}
             </SelectContext.Provider>

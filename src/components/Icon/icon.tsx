@@ -1,6 +1,7 @@
 import React from "react";
 import classNames from 'classnames';
 import {IIconProps} from "@icon-park/react/lib/runtime/index"
+import { prefixClass } from "../../provider"
 
 type ThemeProps = "primary" | "secondary" | "success" | "info" | "warning" | "danger" | "light" | "default"
 
@@ -22,8 +23,8 @@ interface IconProps extends IIconProps {
  */
 export const Icon: React.FC<IconProps> = (props) => {
   const {IconOrigin, design, className, ...resetProps} = props;
-  const classes = classNames('icon', className, {
-    [`icon-${design}`]: design
+  const classes = classNames(`${prefixClass}-icon`, className, {
+    [`${prefixClass}-icon-${design}`]: design
   })
   
   return (

@@ -3,6 +3,7 @@ import React from "react";
 import {Upload, UploadProps} from "./upload"
 import {Button} from "../"
 import axios from "axios";
+import { prefixClass } from "../../provider";
 
 jest.mock("axios")
 const mockAxios = axios as jest.Mocked<typeof axios>
@@ -52,7 +53,7 @@ describe("测试 Upload 组件", () => {
       name: "test.jpg"
     }))
     expect(wrapper.queryByText("test.jpg")).toBeInTheDocument()
-    expect(wrapper.container.querySelector(".upload-list-item")).toHaveClass("upload-list-item-status-success")
+    expect(wrapper.container.querySelector(`.${prefixClass}-upload-list-item`)).toHaveClass(`${prefixClass}-upload-list-item-status-success`)
     expect(testProps.onSuccess).toHaveBeenCalledWith('success', expect.objectContaining({
       rawInfo: testFile,
       name: "test.jpg",
@@ -67,8 +68,8 @@ describe("测试 Upload 组件", () => {
       fireEvent.change(fileEl, {target: {files: [testFile2]}})
     })
     expect(wrapper.queryByText("test2.jpg")).toBeInTheDocument()
-    expect(wrapper.container.querySelectorAll(".upload-list-item").length).toEqual(2)
-    expect(wrapper.container.querySelector(".upload-list-item")).toHaveClass("upload-list-item-status-error")
+    expect(wrapper.container.querySelectorAll(`.${prefixClass}-upload-list-item`).length).toEqual(2)
+    expect(wrapper.container.querySelector(`.${prefixClass}-upload-list-item`)).toHaveClass(`${prefixClass}-upload-list-item-status-error`)
     expect(testProps.onError).toHaveBeenCalledWith('error!!!', expect.objectContaining({
       rawInfo: testFile2,
       name: "test2.jpg",
@@ -78,10 +79,10 @@ describe("测试 Upload 组件", () => {
 
 
     // 删除效果
-    const delEl = wrapper.container.querySelector(".upload-list-item-delete") as HTMLElement
+    const delEl = wrapper.container.querySelector(`.${prefixClass}-upload-list-item-delete`) as HTMLElement
     expect(delEl).toBeInTheDocument()
     fireEvent.click(delEl)
-    expect(wrapper.container.querySelectorAll(".upload-list-item").length).toEqual(1)
+    expect(wrapper.container.querySelectorAll(`.${prefixClass}-upload-list-item`).length).toEqual(1)
     expect(wrapper.queryByText("test2.jpg")).not.toBeInTheDocument()
     expect(testProps.onRemove).toHaveBeenCalledWith(expect.objectContaining({
       rawInfo: testFile,
@@ -92,11 +93,11 @@ describe("测试 Upload 组件", () => {
   
   test('测试拖拽', async () => {
     mockAxios.post.mockResolvedValue({data: 'success'})
-    const uploadArea = wrapper.container.querySelector(".drap-upload") as HTMLElement;
+    const uploadArea = wrapper.container.querySelector(`.${prefixClass}-upload-drap`) as HTMLElement;
     fireEvent.dragOver(uploadArea);
-    expect(uploadArea).toHaveClass("drap-upload-actived")
+    expect(uploadArea).toHaveClass(`${prefixClass}-upload-drap-actived`)
     fireEvent.dragLeave(uploadArea)
-    expect(uploadArea).not.toHaveClass("drap-upload-actived")
+    expect(uploadArea).not.toHaveClass(`${prefixClass}-upload-drap-actived`)
 
     await waitFor(() => {
       fireEvent.drop(uploadArea, {dataTransfer: {files: [testFile]}})
@@ -109,7 +110,5 @@ describe("测试 Upload 组件", () => {
       status: "success"
     }))
   })
-  
-  
-  
+
 })

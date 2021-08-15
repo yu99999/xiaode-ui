@@ -1,5 +1,6 @@
 import React from "react";
 import classNames from "classnames";
+import { prefixClass } from "../../provider"
 
 export interface InputProps extends Omit<React.InputHTMLAttributes<HTMLElement>, 'size' | 'prefix'>{
   /** 是否禁用状态，默认为 false */
@@ -21,28 +22,28 @@ export interface InputProps extends Omit<React.InputHTMLAttributes<HTMLElement>,
 export const Input: React.FC<InputProps> = (props) => {
   const {disabled, size, suffix, prefix, prepend, append, onChange, style, className, ...resetProps} = props;
 
-  const classesWrapper = classNames('input-wrapper', className, {
-    [`input-wrapper-${size}`]: size,
-    [`input-wrapper-disabled`]: disabled,
+  const classesWrapper = classNames(`${prefixClass}-input-wrapper`, className, {
+    [`${prefixClass}-input-wrapper-${size}`]: size,
+    [`${prefixClass}-input-wrapper-disabled`]: disabled,
   })
-  const classesInput = classNames('input', {
-    'input-prefix': prefix,
-    'input-suffix': suffix
+  const classesInput = classNames(`${prefixClass}-input`, {
+    [`${prefixClass}-input-prefix`]: prefix,
+    [`${prefixClass}-input-suffix`]: suffix
   })
   return (
     <div className={classesWrapper} style={style}>
-      {prepend ? <span className="input-prepend">{prepend}</span> : null}
-      <div className="input-affix-wrapper">
-        {prefix ? <span className="input-icon-prefix">{prefix}</span> : null}
+      {prepend ? <span className={`${prefixClass}-input-prepend`}>{prepend}</span> : null}
+      <div className={`${prefixClass}-input-affix-wrapper`}>
+        {prefix ? <span className={`${prefixClass}-input-icon-prefix`}>{prefix}</span> : null}
         <input
           className={classesInput}
           disabled={disabled}
           onChange={onChange}
           {...resetProps} 
         />
-        {suffix ? <span className="input-icon-suffix">{suffix}</span> : null}
+        {suffix ? <span className={`${prefixClass}-input-icon-suffix`}>{suffix}</span> : null}
       </div>
-      {append ? <span className="input-append">{append}</span> : null}
+      {append ? <span className={`${prefixClass}-input-append`}>{append}</span> : null}
     </div>
   )
 }

@@ -2,6 +2,7 @@ import React, { ChangeEvent, useRef, useState } from "react";
 import axios from "axios";
 import UploadList from "./uploadList";
 import DragUpload from "./dragUpload";
+import { prefixClass } from "../../provider"
 
 export interface UploadFile{
   /** 唯一标识符 */
@@ -160,8 +161,8 @@ export const Upload: React.FC<UploadProps> = (props) => {
   }
 
   return (
-    <div className="upload-wrapper" style={style}>
-      <div className="upload-main" onClick={handleClick}>
+    <div className={`${prefixClass}-upload-wrapper`} style={style}>
+      <div className={`${prefixClass}-upload-main`} onClick={handleClick}>
         {
           drag 
           ? <DragUpload onDropFile={(files) => handleUploadPrev(files)} >{children}</DragUpload>

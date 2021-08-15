@@ -1,6 +1,7 @@
 import { fireEvent, render, RenderResult, waitFor } from "@testing-library/react";
 import React from "react";
 import {AutoComplete, AutoCompleteProps} from "./autoComplete"
+import { prefixClass } from "../../provider"
 
 jest.mock("axios")
 
@@ -29,11 +30,11 @@ describe("测试 AutoComplete 组件", () => {
     await waitFor(() => {
       expect(wrapper.queryByText("arva")).toBeInTheDocument()
     })
-    expect(wrapper.container.querySelectorAll(".select-option-dropdown-item").length).toEqual(4)
+    expect(wrapper.container.querySelectorAll(`.${prefixClass}-select-option-dropdown-item`).length).toEqual(4)
     fireEvent.click(wrapper.getByText("arva"))
     expect(testProps.onSelect).toHaveBeenCalledWith(expect.objectContaining({value: "arva"}))
     await waitFor(() => {
-      expect(wrapper.container.querySelectorAll(".select-option-dropdown-item").length).toEqual(0)
+      expect(wrapper.container.querySelectorAll(`.${prefixClass}-select-option-dropdown-item`).length).toEqual(0)
     })
     // expect(wrapper.queryByText("arva")).not.toBeInTheDocument()
     expect(el.value).toBe('arva')
@@ -42,15 +43,15 @@ describe("测试 AutoComplete 组件", () => {
   // test('测试键盘移动', async () => {
   //   fireEvent.change(el, {target: {value: "a"}});
   //   await waitFor(() => {
-  //     expect(wrapper.container.querySelectorAll(".select-option-dropdown-item").length).toEqual(4)
+  //     expect(wrapper.container.querySelectorAll(`.${prefixClass}-select-option-dropdown-item`).length).toEqual(4)
   //   })
   //   fireEvent.keyDown(el, {key: "ArrowDown"});
-  //   expect(wrapper.queryByText("aaaa")).toHaveClass("select-option-dropdown-item-selected")
+  //   expect(wrapper.queryByText("aaaa")).toHaveClass(`${prefixClass}-select-option-dropdown-item-selected`)
   //   fireEvent.keyDown(el, {key: "ArrowDown"});
-  //   expect(wrapper.queryByText("arva")).toHaveClass("select-option-dropdown-item-selected")
+  //   expect(wrapper.queryByText("arva")).toHaveClass(`${prefixClass}-select-option-dropdown-item-selected`)
 
   //   fireEvent.keyDown(el, {key: "ArrowUp"});
-  //   expect(wrapper.queryByText("aaaa")).toHaveClass("select-option-dropdown-item-selected")
+  //   expect(wrapper.queryByText("aaaa")).toHaveClass(`${prefixClass}-select-option-dropdown-item-selected`)
 
   //   fireEvent.keyDown(el, {key: "Enter"});
   //   expect(testProps.onSelect).toHaveBeenCalledWith({id: 1, value: "aaaa"})
@@ -61,7 +62,7 @@ describe("测试 AutoComplete 组件", () => {
   test('测试点击下拉菜单外部隐藏下拉菜单', async () => {
     fireEvent.change(el, {target: {value: "aa"}});
     await waitFor(() => {
-      expect(wrapper.container.querySelectorAll(".select-option-dropdown-item").length).toEqual(1)
+      expect(wrapper.container.querySelectorAll(`.${prefixClass}-select-option-dropdown-item`).length).toEqual(1)
     })
     fireEvent.click(document)
     await waitFor(() => {
@@ -93,11 +94,11 @@ test("测试 AutoComplete 组件的 renderOptions 以及异步请求", async () 
   fireEvent.change(el, {target: {value: "aa"}});
   await waitFor(() => {
     // 展示 loading 动画
-    expect(wrapper.container.querySelector(".spin-spinning")).toBeInTheDocument()
+    expect(wrapper.container.querySelector(`.${prefixClass}-spin-spinning`)).toBeInTheDocument()
   })
   await waitFor(() => {
-    expect(wrapper.container.querySelectorAll(".select-option-dropdown-item").length).toEqual(1)
+    expect(wrapper.container.querySelectorAll(`.${prefixClass}-select-option-dropdown-item`).length).toEqual(1)
   })
-  expect(wrapper.container.querySelector(".spin-spinning")).not.toBeInTheDocument()
+  expect(wrapper.container.querySelector(`.${prefixClass}-spin-spinning`)).not.toBeInTheDocument()
   expect(wrapper.container.querySelectorAll(".test-render-options").length).toEqual(1)
 })

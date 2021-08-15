@@ -1,5 +1,6 @@
 import React from "react";
 import classNames from "classnames";
+import { prefixClass } from "../../provider"
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLElement>{
   /** 用户自定义类 */
@@ -20,9 +21,9 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLElement>{
 /** 按钮用于开始一个即时操作。 */
 export const Button: React.FC<ButtonProps> = (props) => {
   const {className, disabled, size, children, btnType, href, target, ...resetProps} = props;
-  const classes = classNames('btn', {
-    [`btn-${btnType}`]: btnType,
-    [`btn-${size}`]: size,
+  const classes = classNames(`${prefixClass}-btn`, {
+    [`${prefixClass}-btn-${btnType}`]: btnType,
+    [`${prefixClass}-btn-${size}`]: size,
     disabled,
     [`${className}`]: className
   })

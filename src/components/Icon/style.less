@@ -1,10 +1,10 @@
 each(@theme-colors, {
-  .icon{
+  .@{prefix-class}-icon{
     svg{
       vertical-align: text-bottom;
     }
   }
-  .icon-@{key}{
+  .@{prefix-class}-icon-@{key}{
     color: @value;
   }
 })

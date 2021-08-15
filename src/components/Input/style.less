@@ -7,16 +7,16 @@
 @input-fontsize-lg: 1rem;
 @fix-distance: .5rem;
 
-.input-wrapper{
+.@{prefix-class}-input-wrapper{
   display: flex;
-  .input-affix-wrapper{
+  .@{prefix-class}-input-affix-wrapper{
     display: flex;
     position: relative;
     width: 100%;
-    &:hover .input{
+    &:hover .@{prefix-class}-input{
       border-color: @primary;
     }
-    .input{
+    .@{prefix-class}-input{
       width: 100%;
       border: @border-base;
       line-height: @line-height-base;
@@ -28,21 +28,21 @@
         border-color: @primary;
         box-shadow: @input-box-shadow;
       }
-      &.input-prefix{
+      &.@{prefix-class}-input-prefix{
         padding-left: @fix-distance + 1.4rem;
       }
-      &.input-suffix{
+      &.@{prefix-class}-input-suffix{
         padding-right: @fix-distance + 1.4rem;
       }
     }
 
-    .input-icon-prefix{
+    .@{prefix-class}-input-icon-prefix{
       position: absolute;
       left: @fix-distance; 
       top: 50%;
       transform: translateY(-50%);
     }
-    .input-icon-suffix{
+    .@{prefix-class}-input-icon-suffix{
       position: absolute;
       right: @fix-distance; 
       top: 50%;
@@ -50,24 +50,24 @@
     }
   }
 
-  .input-prepend, .input-append{
+  .@{prefix-class}-input-prepend, .@{prefix-class}-input-append{
     line-height: @line-height-base;
     border: @border-base;
     background-color: @gray-100;
   }
-  .input-prepend{
+  .@{prefix-class}-input-prepend{
     border-right: none;
   }
-  .input-append{
+  .@{prefix-class}-input-append{
     border-left: none;
   }
 }
 
 
-.input-wrapper-disabled{
+.@{prefix-class}-input-wrapper-disabled{
   opacity: .8;
   cursor: not-allowed;
-  .input-affix-wrapper .input{
+  .@{prefix-class}-input-affix-wrapper .@{prefix-class}-input{
     cursor: not-allowed;
     &:hover{
       border: @border-base;

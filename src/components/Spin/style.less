@@ -6,32 +6,32 @@
 @counter: 1,2,3,4,5,6,7,8,9,10;
 
 .spin-spinning-size(@size, @spin-height, @font-size){
-  &.spin-spinning-@{size}{
-    .spin-spinning{
+  &.@{prefix-class}-spin-spinning-@{size}{
+    .@{prefix-class}-spin-spinning{
       width: @spin-height*3.8;
       height: @spin-height*3.8;
-      .spin-spinning-item{
+      .@{prefix-class}-spin-spinning-item{
         height: @spin-height;
       }
     }
 
-    .spin-spinning-description{
+    .@{prefix-class}-spin-spinning-description{
       font-size: @font-size;
     }
   }
 }
 
-.spin-spinning-wrapper{
+.@{prefix-class}-spin-spinning-wrapper{
   position: relative;
   display: inline-block;
 
-  .spin-spinning{
+  .@{prefix-class}-spin-spinning{
     position: relative;
     display: inline-block;
     box-sizing: border-box;
     animation: rotate-animation 1.2s infinite linear;
 
-    .spin-spinning-item{
+    .@{prefix-class}-spin-spinning-item{
       width: @spin-spinning-item-width;
       display: inline-block;
       position: absolute;
@@ -50,12 +50,12 @@
     }
   }
 
-  &.spin-spinning-wrapper-description{
+  &.@{prefix-class}-spin-spinning-wrapper-description{
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    .spin-spinning-description{
+    .@{prefix-class}-spin-spinning-description{
       margin-top: .5rem;
       color: @primary;
     }
@@ -67,15 +67,15 @@
 }
 
 
-.spin-wrapper{
+.@{prefix-class}-spin-wrapper{
   position: relative;
-  .spin-spinning-wrapper{
+  .@{prefix-class}-spin-spinning-wrapper{
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
     z-index: 10;
   }
   
-  .spin-contain{
+  .@{prefix-class}-spin-contain{
     opacity: .2;
     pointer-events: none;
     user-select: none;

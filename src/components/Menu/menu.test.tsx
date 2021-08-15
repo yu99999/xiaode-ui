@@ -2,6 +2,7 @@ import React from "react";
 import {fireEvent, render, RenderResult, waitFor} from '@testing-library/react'
 import {Menu} from "../index"
 import {MenuProps} from "./menu"
+import { prefixClass } from "../../provider"
 
 const {Item: MenuItem, SubMenu} = Menu
 
@@ -31,10 +32,10 @@ const genMenu = (props: MenuProps) => {
 
 const createStyle = () => {
   const css = `
-    .sub-menu{
+    .${prefixClass}-sub-menu{
       display: none;
     }
-    .sub-menu-open{
+    .${prefixClass}-sub-menu-open{
       display: block;
     }
   `
@@ -64,18 +65,18 @@ describe("测试 horizontal Menu 组件", () => {
 
   test('测试 menu 组件存在以及样式的正确性', () => {
     expect(menuEl).toBeInTheDocument()
-    expect(menuEl).toHaveClass('menu menu-horizontal test')
+    expect(menuEl).toHaveClass(`${prefixClass}-menu ${prefixClass}-menu-horizontal test`)
     expect(menuEl.querySelectorAll(':scope > li').length).toEqual(4);
-    expect(activeEl).toHaveClass('menu-item menu-item-actived abc')
-    expect(disabledEl).toHaveClass('menu-item menu-item-disabled')
+    expect(activeEl).toHaveClass(`${prefixClass}-menu-item ${prefixClass}-menu-item-actived abc`)
+    expect(disabledEl).toHaveClass(`${prefixClass}-menu-item ${prefixClass}-menu-item-disabled`)
   })
   test('测试事件触发时应该修改样式以及 disabled 组件无法触发事件', () => {
     fireEvent.click(thirdEl);
-    expect(thirdEl).toHaveClass('menu-item-actived')
-    expect(activeEl).not.toHaveClass('menu-item-actived')
+    expect(thirdEl).toHaveClass(`${prefixClass}-menu-item-actived`)
+    expect(activeEl).not.toHaveClass(`${prefixClass}-menu-item-actived`)
     expect(testProps.onSelect).toBeCalledWith("third")
     fireEvent.click(disabledEl)
-    expect(disabledEl).not.toHaveClass('menu-item-actived')
+    expect(disabledEl).not.toHaveClass(`${prefixClass}-menu-item-actived`)
     expect(testProps.onSelect).toBeCalledTimes(1)
   })
   test('测试 submenu 组件的显示和隐藏', async () => {
@@ -114,9 +115,9 @@ describe("测试 vertical Menu 组件", () => {
 
   test('测试样式以及默认 index ', () => {
     expect(menuEl).toBeInTheDocument()
-    expect(menuEl).toHaveClass('menu menu-vertical')
+    expect(menuEl).toHaveClass(`${prefixClass}-menu ${prefixClass}-menu-vertical`)
     expect(menuEl.querySelectorAll(':scope > li').length).toEqual(4);
-    expect(wrapper.getByText('third')).toHaveClass('menu-item menu-item-actived')
+    expect(wrapper.getByText('third')).toHaveClass(`${prefixClass}-menu-item ${prefixClass}-menu-item-actived`)
   })
   
   test('测试 submenu 默认展开情况', async () => {

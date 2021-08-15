@@ -3,6 +3,7 @@ import classNames from "classnames";
 import {SelectContext} from "./select"
 import { Icon } from "..";
 import { Check } from "@icon-park/react"
+import { prefixClass } from "../../provider"
 
 export interface OptionProps{
   /** 是否禁用 */
@@ -18,9 +19,9 @@ export const Option: React.FC<OptionProps> = (props) => {
   const key = value;
   const isSelectedIndex = values.findIndex(item => item.key === key);
 
-  const classes = classNames("select-option-dropdown-item", {
-    "select-option-dropdown-item-selected": isSelectedIndex !== -1,
-    "select-option-dropdown-item-disabled": disabled,
+  const classes = classNames(`${prefixClass}-select-option-dropdown-item`, {
+    [`${prefixClass}-select-option-dropdown-item-selected`]: isSelectedIndex !== -1,
+    [`${prefixClass}-select-option-dropdown-item-disabled`]: disabled,
   })
 
   const handleChoose = () => {

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import classNames from 'classnames'
 import {MenuItemProps} from './menuItem'
+import { prefixClass } from "../../provider"
 
 type MenuMode = 'vertical' | 'horizontal'
 
@@ -32,8 +33,8 @@ export const MenuContext = React.createContext<ContextItem>({})
 export const Menu: React.FC<MenuProps> = (props) => {
   const {defalutIndex, className, mode, style, onSelect, defaultOpenSubMenus, children, ...resetProps} = props;
   const [currentIndex, setCurrentIndex] = useState(defalutIndex)
-  const classes = classNames('menu', className, {
-    [`menu-${mode}`]: true
+  const classes = classNames(`${prefixClass}-menu`, className, {
+    [`${prefixClass}-menu-${mode}`]: true
   })
 
   const currentContext: ContextItem = {
