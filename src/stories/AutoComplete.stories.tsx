@@ -31,9 +31,9 @@ Primary.storyName = "基础展示"
 export const AsyncSearch = () => {
 
   const onSearch = async (value: string) => {
-    return fetch("https://jsonplaceholder.typicode.com/posts")
+    return fetch("https://jsonplaceholder.typicode.com/users")
             .then(response => response.json())
-            .then(json => json.filter(item => item.title.includes(value)).map(({title, ...rest}) => ({...rest, value: title})))
+            .then(json => json.filter(item => item.name.includes(value)).map(({name, ...rest}) => ({...rest, value: name})))
   }
 
   return (
